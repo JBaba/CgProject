@@ -92,8 +92,8 @@ public class Table3D extends JFrame {
 		sceneTG.setTransform(sceneT3d);
 
 		try {
-			Table t=new Table();
-			t.createSceneGraph(new BasicSeat());
+			//Table t=new Table();
+			//t.createSceneGraph(new BasicSeat());
 			//sceneTG.addChild(t);
 			sceneTG.addChild(scene);
 		} catch (Exception e) {
