@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns="http://www.w3.org/2001/XMLSchema"
+	targetNamespace="http://www.example.org/Form1" xmlns:tns="http://www.example.org/Form1"
+	elementFormDefault="qualified">
+
+	<xsd:element name="form1">
+		<xsd:element name="input1" type="xsd:string" minOccurs="0" />
+		<xsd:element name="input2" type="xsd:string" minOccurs="0" />
+		<xsd:element name="input3" type="xsd:string" minOccurs="0" />
+		<xsd:element name="input4" type="xsd:string" minOccurs="0" />
+		<xsd:element name="input5" type="xsd:string" minOccurs="0" />
+	</xsd:element>
+
+</xsd:schema>
