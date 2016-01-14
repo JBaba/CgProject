@@ -3,14 +3,21 @@ package opengl.assignment.lect5.tests3D;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.GraphicsConfiguration;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 
+import javax.imageio.ImageIO;
 import javax.media.j3d.Appearance;
 import javax.media.j3d.Background;
 import javax.media.j3d.BoundingSphere;
 import javax.media.j3d.BranchGroup;
 import javax.media.j3d.Canvas3D;
 import javax.media.j3d.DirectionalLight;
+import javax.media.j3d.Link;
 import javax.media.j3d.Material;
+import javax.media.j3d.Shape3D;
+import javax.media.j3d.SharedGroup;
 import javax.media.j3d.TextureAttributes;
 import javax.media.j3d.Transform3D;
 import javax.media.j3d.TransformGroup;
@@ -24,6 +31,7 @@ import com.sun.j3d.utils.behaviors.vp.OrbitBehavior;
 import com.sun.j3d.utils.geometry.Box;
 import com.sun.j3d.utils.geometry.ColorCube;
 import com.sun.j3d.utils.geometry.Cone;
+import com.sun.j3d.utils.image.TextureLoader;
 import com.sun.j3d.utils.universe.SimpleUniverse;
 import com.sun.j3d.utils.universe.ViewingPlatform;
 
@@ -42,7 +50,7 @@ public class Table3D extends JFrame {
 
 	private final static Material tableTopMaterial = (new Material(new Color3f(ColourConstants.brown),
 			new Color3f(ColourConstants.darkBrown), new Color3f(ColourConstants.darkred),
-			new Color3f(ColourConstants.white), 10f));
+			new Color3f(ColourConstants.white), 2f));
 	
 	private final static Material tableBottomMaterial = (new Material(new Color3f(ColourConstants.brown),
 			new Color3f(ColourConstants.blue), new Color3f(ColourConstants.brown),
@@ -51,6 +59,13 @@ public class Table3D extends JFrame {
 	private final static Material chairStructureMaterial = (new Material(new Color3f(ColourConstants.darkBlue),
 			new Color3f(ColourConstants.darkGreen), new Color3f(ColourConstants.white),
 			new Color3f(ColourConstants.darkred), 2f));
+	
+	private final static Material floorMat = (new Material(
+            new Color3f(ColourConstants.grey),
+            new Color3f(ColourConstants.darkred),
+            new Color3f(.2f, 0.2f, 0.2f),
+            new Color3f(.1f, .1f, .1f),
+            4.0f));
 
 	public Table3D() {
 		setLayout(new BorderLayout());
@@ -122,23 +137,11 @@ public class Table3D extends JFrame {
 
 	private void createCube(BranchGroup bg) {
 
-		// Setup TextureAttributes and create texture
-		TextureAttributes textureAttrib = new TextureAttributes();
-		Transform3D textureTransform = new Transform3D();
-		textureTransform.setScale(new Vector3d(4.0f, 4.0, 1.0f));
-
-		// User 'MODULATE' for realism, i.e. lighting and shading
-		textureAttrib.setTextureMode(TextureAttributes.MODULATE);
-		textureAttrib.setTextureTransform(textureTransform);
-
 		Appearance cubeTopAppearance = new Appearance();
-		cubeTopAppearance.setTextureAttributes(textureAttrib);
 		cubeTopAppearance.setMaterial(tableTopMaterial);
 
 		// table top box size
-		Box tableTop = new Box(0.35f, 0.01f, 0.35f, Box.GENERATE_NORMALS | Box.GENERATE_TEXTURE_COORDS, cubeTopAppearance);
-		// Sets the appearance of the top of table
-		tableTop.setAppearance(cubeTopAppearance);
+		Box tableTop = new Box(0.35f, 0.01f, 0.35f, cubeTopAppearance);
 
 		TransformGroup tableTG = new TransformGroup();
 		Transform3D tableT3d = new Transform3D();
@@ -155,46 +158,101 @@ public class Table3D extends JFrame {
 		
 		Appearance cubeBottomAppearance = new Appearance();
 		cubeBottomAppearance.setMaterial(tableBottomMaterial);
-		Box tableBottom = new Box(0.30f, 0.009f, 0.34f, cubeBottomAppearance);
+		Box tableBottom = new Box(0.35f, 0.1f, 0.35f, cubeBottomAppearance);
 		tableTG.addChild(tableBottom);
-		
 		
 		tableT3d = new Transform3D();
 		// Scale BasicSeat to size of a table
-		tableT3d.setScale(new Vector3d(3.5f, 10f, 2f));
-		tableTG.setTransform(tableT3d);
-		
-		tableT3d = new Transform3D();
-		tableT3d.setTranslation(new Vector3f(0.28f, 0.350f, -0.05f));
+		tableT3d.setScale(new Vector3d(3.5f,72f / 44f, 2f));
+		tableT3d.setTranslation(new Vector3f(0.01f,-0.18f, 0.01f));
 		tableTG.setTransform(tableT3d);
 		
 		// Add our table so far
 		bg.addChild(tableTG);
 		
-		/*// Add a drawer to table
-		tableTG = new TransformGroup();
+        TransformGroup lagTG = new TransformGroup();
 
-		Appearance drawerAppearance = new Appearance();
-		drawerAppearance.setMaterial(chairStructureMaterial);
-		// Create the box
-		tableTG.addChild(new Box(0.6f, 0.1f, 0.4f, drawerAppearance));
-
-		// Add a front to the drawer, using basicSeats Appearance node
+        // leg 1
+        Appearance legAppearance = new Appearance();
+        legAppearance.setMaterial(chairStructureMaterial);
+        Box legAndSupportShape = new Box(0.03f, 0.42f, 0.03f, legAppearance);
+        lagTG.addChild(legAndSupportShape);
+        
+        tableT3d = new Transform3D();
+		// Scale BasicSeat to size of a table
+		tableT3d.setScale(new Vector3d(2f,72f / 44f, 3f));
+		tableT3d.setTranslation(new Vector3f(1.1f,-0.7f,0.6f));
+		lagTG.setTransform(tableT3d);
+		bg.addChild(lagTG);
+		
+		// leg 2
+		lagTG = new TransformGroup();
+		Box leg2 = new Box(0.03f, 0.42f, 0.03f, legAppearance);
+		lagTG.addChild(leg2);
 		tableT3d = new Transform3D();
-		tableT3d.setTranslation(new Vector3f(0f, -0.01f, 0.41f));
-		TransformGroup tg = new TransformGroup(tableT3d);
-
-		tg.addChild(new Box(0.64f, 0.11f, 0.04f, drawerAppearance));
-		tableTG.addChild(tg);
-
-		// Translate the drawer
+		// Scale BasicSeat to size of a table
+		tableT3d.setScale(new Vector3d(2f,72f / 44f, 3f));
+		tableT3d.setTranslation(new Vector3f(1.1f,-0.7f,-0.58f));
+		lagTG.setTransform(tableT3d);
+		bg.addChild(lagTG);
+		
+		// leg 3
+		lagTG = new TransformGroup();
+		Box leg3 = new Box(0.03f, 0.42f, 0.03f, legAppearance);
+		lagTG.addChild(leg3);
 		tableT3d = new Transform3D();
-		tableT3d.setTranslation(new Vector3f(0f, 1.3f, 0.22f));
-		tableTG.setTransform(tableT3d);
+		// Scale BasicSeat to size of a table
+		tableT3d.setScale(new Vector3d(2f,72f / 44f, 3f));
+		tableT3d.setTranslation(new Vector3f(-1.1f,-0.7f,-0.58f));
+		lagTG.setTransform(tableT3d);
+		bg.addChild(lagTG);
+		
+		// leg 4
+		lagTG = new TransformGroup();
+		Box leg4 = new Box(0.03f, 0.42f, 0.03f, legAppearance);
+		lagTG.addChild(leg4);
+		tableT3d = new Transform3D();
+		// Scale BasicSeat to size of a table
+		tableT3d.setScale(new Vector3d(2f,72f / 44f, 3f));
+		tableT3d.setTranslation(new Vector3f(-1.1f,-0.7f,0.58f));
+		lagTG.setTransform(tableT3d);
+		bg.addChild(lagTG);
+		
+		// floor
+		lagTG = new TransformGroup();
+		
+		BufferedImage imgcarpet = null;
+		try {
+			imgcarpet = ImageIO.read(new File("C:\\Data\\EWorkspace\\CgProject\\MyCgProject\\src\\inter\\kitchen\\carpet.jpg"));
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		// Create a TextureAttributes to control how the texture is displayed
+        TextureAttributes textureAttrib = new TextureAttributes();
+        Transform3D textureTransform = new Transform3D();
 
-		// Finally add our table
-		bg.addChild(tableTG);*/
+        // Rescale the texture, so it tiles
+        textureTransform.setScale(new Vector3d(14.0f, 14.0, 1.0f));
 
+        // Use 'REPLACE', as carpets reflect very little light, and are not see through
+        textureAttrib.setTextureMode(TextureAttributes.REPLACE);
+        textureAttrib.setTextureTransform(textureTransform);
+        TextureLoader loadercarpet = new TextureLoader(imgcarpet);
+		Appearance floorAppearance = new Appearance();
+		floorAppearance.setTexture(loadercarpet.getTexture());
+        floorAppearance.setTextureAttributes(textureAttrib);
+		floorAppearance.setMaterial(floorMat);
+		
+		Box floor = new Box(10f, 0.015f, 8f, Box.GENERATE_TEXTURE_COORDS, floorAppearance);
+		lagTG.addChild(floor);
+		
+		tableT3d = new Transform3D();
+		tableT3d.setTranslation(new Vector3f(-1.1f,-1.41f,0.58f));
+		lagTG.setTransform(tableT3d);
+		
+		bg.addChild(lagTG);
+		
 	}
 
 	private void createScene2(BranchGroup bg) {
