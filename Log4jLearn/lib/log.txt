@@ -1,0 +1,30 @@
+This is debug : mkyong
+This is info : mkyong
+This is warn : mkyong
+This is error : mkyong
+This is fatal : mkyong
+2016-06-08 23:20:06 DEBUG HelloExample:19 - This is debug : mkyong
+2016-06-08 23:20:06 INFO  HelloExample:23 - This is info : mkyong
+2016-06-08 23:20:06 WARN  HelloExample:26 - This is warn : mkyong
+2016-06-08 23:20:06 ERROR HelloExample:27 - This is error : mkyong
+2016-06-08 23:20:06 FATAL HelloExample:28 - This is fatal : mkyong
+2016-06-08 23:21:28 DEBUG HelloExample:19 - This is debug : mkyong
+2016-06-08 23:21:28 INFO  HelloExample:23 - This is info : mkyong
+2016-06-08 23:21:28 WARN  HelloExample:26 - This is warn : mkyong
+2016-06-08 23:21:28 ERROR HelloExample:27 - This is error : mkyong
+2016-06-08 23:21:28 FATAL HelloExample:28 - This is fatal : mkyong
+2016-06-08 23:21:33 DEBUG HelloExample:19 - This is debug : mkyong
+2016-06-08 23:21:33 INFO  HelloExample:23 - This is info : mkyong
+2016-06-08 23:21:33 WARN  HelloExample:26 - This is warn : mkyong
+2016-06-08 23:21:33 ERROR HelloExample:27 - This is error : mkyong
+2016-06-08 23:21:33 FATAL HelloExample:28 - This is fatal : mkyong
+2016-06-08 23:22:37 DEBUG HelloExample:19 - This is debug : mkyong
+2016-06-08 23:22:37 INFO  HelloExample:23 - This is info : mkyong
+2016-06-08 23:22:37 WARN  HelloExample:26 - This is warn : mkyong
+2016-06-08 23:22:37 ERROR HelloExample:27 - This is error : mkyong
+2016-06-08 23:22:37 FATAL HelloExample:28 - This is fatal : mkyong
+2016-06-08 23:23:34 DEBUG HelloExample:19 - This is debug : Naimish
+2016-06-08 23:23:34 INFO  HelloExample:23 - This is info : Naimish
+2016-06-08 23:23:34 WARN  HelloExample:26 - This is warn : Naimish
+2016-06-08 23:23:34 ERROR HelloExample:27 - This is error : Naimish
+2016-06-08 23:23:34 FATAL HelloExample:28 - This is fatal : Naimish
