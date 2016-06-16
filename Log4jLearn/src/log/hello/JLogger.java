@@ -1,5 +1,6 @@
 package log.hello;
 
+import org.apache.log4j.Category;
 import org.apache.log4j.ConsoleAppender;
 import org.apache.log4j.FileAppender;
 import org.apache.log4j.Level;
@@ -8,8 +9,6 @@ import org.apache.log4j.PatternLayout;
 
 public class JLogger {
 
-	Logger rootLooger = null;
-	
 	public JLogger() {
 		startConsolLog();
 	}
@@ -23,8 +22,7 @@ public class JLogger {
 		console.activateOptions();
 		
 		//add appender to any Logger (here is root)
-		rootLooger = Logger.getRootLogger();
-		rootLooger.addAppender(console);
+		Logger.getRootLogger().addAppender(console);
 	}
 	
 	public void startFileLog(String fileName){
@@ -35,9 +33,10 @@ public class JLogger {
 		fa.setThreshold(Level.DEBUG);
 		fa.setAppend(true);
 		fa.activateOptions();
-	
 		//add appender to any Logger (here is root)
-		rootLooger.addAppender(fa);
+		
+		Logger.getRootLogger().setAdditivity(false);
+		Logger.getRootLogger().addAppender(fa);
 		//repeat with all other desired appenders
 	}
 	

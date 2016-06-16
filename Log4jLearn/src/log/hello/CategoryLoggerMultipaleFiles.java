@@ -6,24 +6,24 @@ import org.apache.log4j.Category;
 import org.apache.log4j.Logger;
 import org.apache.log4j.Priority;
 
-public class ProgLoggerMultipaleFiles {
+public class CategoryLoggerMultipaleFiles {
 	
-	HashMap<LogCategory, Logger> myLogHashMap = new HashMap<LogCategory, Logger>();
+	HashMap<LogCategory, Category> myLogHashMap = new HashMap<LogCategory, Category>();
 	//Logger.getLogger(ProgLoggerMultipaleFiles.class);
 	
-	public ProgLoggerMultipaleFiles() {
-		JLogger jlog = new JLogger();
+	public CategoryLoggerMultipaleFiles() {
+		JCategoryLogger jlog = new JCategoryLogger();
 		jlog.startFileLog("mylog");
 		jlog.startFileLog("HC");
 		jlog.startFileLog("MC");
 		jlog.startFileLog("DC");
 		
-		myLogHashMap.put(LogCategory.mylog, Logger.getLogger("mylog"));
-		myLogHashMap.put(LogCategory.HC, Logger.getLogger("HC"));
-		myLogHashMap.put(LogCategory.MC, Logger.getLogger("MC"));
-		myLogHashMap.put(LogCategory.DC, Logger.getLogger("DC"));
+		myLogHashMap.put(LogCategory.mylog, Category.getInstance("mylog"));
+		myLogHashMap.put(LogCategory.HC, Category.getInstance("HC"));
+		myLogHashMap.put(LogCategory.MC, Category.getInstance("MC"));
+		myLogHashMap.put(LogCategory.DC, Category.getInstance("DC"));
 		
-		Logger.getLogger("mylog").info("Hello");
+		Logger.getRootLogger().info("Hello");
 		
 		String parameter = "Naimish";
 		  
@@ -49,7 +49,7 @@ public class ProgLoggerMultipaleFiles {
 
 	public static void main(String[] args) {
 
-		ProgLoggerMultipaleFiles plog = new ProgLoggerMultipaleFiles();
+		CategoryLoggerMultipaleFiles plog = new CategoryLoggerMultipaleFiles();
 		
 	}
 
