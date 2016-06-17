@@ -9,9 +9,9 @@ import org.apache.log4j.Priority;
 public class ProgLoggerMultipaleFiles {
 	
 	HashMap<LogCategory, Logger> myLogHashMap = new HashMap<LogCategory, Logger>();
-	//Logger.getLogger(ProgLoggerMultipaleFiles.class);
 	
 	public ProgLoggerMultipaleFiles() {
+		
 		JLogger jlog = new JLogger();
 		jlog.startFileLog("mylog");
 		jlog.startFileLog("HC");
@@ -23,9 +23,7 @@ public class ProgLoggerMultipaleFiles {
 		myLogHashMap.put(LogCategory.MC, Logger.getLogger("MC"));
 		myLogHashMap.put(LogCategory.DC, Logger.getLogger("DC"));
 		
-		Logger.getLogger("mylog").info("Hello");
-		
-		String parameter = "Naimish";
+		String parameter = "Hello";
 		  
 		log(LogCategory.mylog,Priority.DEBUG,"This is debug : " + parameter);
 		log(LogCategory.mylog,Priority.INFO,"This is info : " + parameter);

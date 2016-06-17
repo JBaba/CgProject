@@ -35,8 +35,10 @@ public class JLogger {
 		fa.activateOptions();
 		//add appender to any Logger (here is root)
 		
-		Logger.getRootLogger().setAdditivity(false);
-		Logger.getRootLogger().addAppender(fa);
+		//Logger.getRootLogger().setAdditivity(false);
+		//Logger.getRootLogger().addAppender(fa);
+		Logger.getLogger(fileName).setAdditivity(false); // messages will not go to root logger anymore!
+	    Logger.getLogger(fileName).addAppender(fa);
 		//repeat with all other desired appenders
 	}
 	
