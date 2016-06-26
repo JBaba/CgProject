@@ -1,5 +1,7 @@
 package leetcode.sol.One_1_to_20;
 import java.lang.*;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * @author jbaba
@@ -13,7 +15,7 @@ import java.lang.*;
 
 public class One {
 	
-	public int[] twoSum(int[] nums, int target){
+	public int[] twoSum2(int[] nums, int target){
 		if(nums==null)
 			throw new IllegalArgumentException();
 		
@@ -22,6 +24,25 @@ public class One {
 				if((nums[i]+nums[j])==target){
 					return new int[]{i,j};
 				}
+			}
+		}
+		
+		throw new IllegalArgumentException();
+	}
+	
+	public int[] twoSum(int[] nums, int target){
+		if(nums==null)
+			throw new IllegalArgumentException();
+		
+		Map<Integer, Integer> hashNums = new HashMap<>();
+		for (int i = 0; i < nums.length; i++) {
+			hashNums.put(nums[i], i);
+		}
+		
+		for (int i = 0; i < nums.length; i++) {
+			int temp = target - nums[i];
+			if(hashNums.containsKey(temp) && hashNums.get(temp)!=i){
+				return new int[]{i,hashNums.get(temp)};
 			}
 		}
 		
@@ -42,8 +63,9 @@ public class One {
 		One o = new One();
 		int[] nums1 = {2, 7, 11, 15};
 		o.print(o.twoSum(nums1, 9));
-		int[] nums2 = {3,2,9,4};
+		int[] nums2 = {3,80,3,4};
 		o.print(o.twoSum(nums2, 6));
+		//o.print(o.twoSum(null, 6));
 		o.print(o.twoSum(new int[]{}, 6));
 	}
 
