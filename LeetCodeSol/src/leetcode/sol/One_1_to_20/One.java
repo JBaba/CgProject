@@ -1,4 +1,5 @@
 package leetcode.sol.One_1_to_20;
+import java.lang.*;
 
 /**
  * @author jbaba
@@ -12,31 +13,19 @@ package leetcode.sol.One_1_to_20;
 
 public class One {
 	
-	public int[] twoSum(int[] nums, int target) {
-		int[] indices = new int[2]; 
+	public int[] twoSum(int[] nums, int target){
+		if(nums==null)
+			throw new IllegalArgumentException();
 		
-		if(nums==null || nums.length < 2)
-			return indices;
-		
-		int sum = nums[0]+nums[1];
-		
-		if(sum==target){
-			indices[0]=0;
-			indices[1]=1;
-			return indices;
-		}
-		
-		for (int i = 2; i < indices.length; i++) {
-			sum = sum - indices[i-2];
-			sum = sum + indices[i];
-			
-			if(sum == target){
-				indices[0]=i-1;
-				indices[1]=i;
+		for (int i = 0; i < nums.length; i++) {
+			for (int j = i+1; j < nums.length; j++) {
+				if((nums[i]+nums[j])==target){
+					return new int[]{i,j};
+				}
 			}
 		}
 		
-		return indices;
+		throw new IllegalArgumentException();
 	}
 	
 	public void print(int[] nums){
@@ -49,10 +38,13 @@ public class One {
 		}
 	}
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws Exception {
 		One o = new One();
 		int[] nums1 = {2, 7, 11, 15};
 		o.print(o.twoSum(nums1, 9));
+		int[] nums2 = {3,2,9,4};
+		o.print(o.twoSum(nums2, 6));
+		o.print(o.twoSum(new int[]{}, 6));
 	}
 
 }
