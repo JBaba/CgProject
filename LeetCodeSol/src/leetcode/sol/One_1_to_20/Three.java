@@ -21,7 +21,7 @@ import java.util.Map;
 
 public class Three {
 
-	public int lengthOfLongestSubstring(String s) {
+	public int lengthOfLongestSubstring2(String s) {
 		int resultLength = 0;
 		Map<Integer,String> map = new HashMap<>();
 		
@@ -47,6 +47,35 @@ public class Three {
 		return resultLength;
     }
 	
+	public int lengthOfLongestSubstring(String s) {
+		int resultLength = 0;
+		
+		if(s==null){
+			throw new IllegalArgumentException();
+		}
+		
+		if(s.length() == 0){
+			return resultLength;
+		}
+		
+		String subStr = s.substring(0,1);
+		for (int i = 1; i < s.length(); i++) {
+			if(subStr.contains(s.substring(i,i+1))){
+				if(resultLength < subStr.length()){
+					resultLength = subStr.length();
+				}
+				subStr = s.substring(i,i+1);
+			}else{
+				subStr += s.substring(i,i+1);
+			}
+		}
+		if(resultLength < subStr.length()){
+			resultLength = subStr.length();
+		}
+		return resultLength;
+    }
+
+	
 	public static void main(String[] args) {
 		Three t = new Three();
 		int output = t.lengthOfLongestSubstring("abcabcbb");
@@ -54,6 +83,10 @@ public class Three {
 		output = t.lengthOfLongestSubstring("bbbbb");
 		System.out.println(output);
 		output = t.lengthOfLongestSubstring("pwwkew");
+		System.out.println(output);
+		output = t.lengthOfLongestSubstring("x");
+		System.out.println(output);
+		output = t.lengthOfLongestSubstring("dvdf");
 		System.out.println(output);
 	}
 
