@@ -47,7 +47,7 @@ public class Three {
 		return resultLength;
     }
 	
-	public int lengthOfLongestSubstring(String s) {
+	public int lengthOfLongestSubstring3(String s) {
 		int resultLength = 0;
 		
 		if(s==null){
@@ -74,6 +74,36 @@ public class Three {
 		}
 		return resultLength;
     }
+	
+	public int lengthOfLongestSubstring(String s) {
+		int resultLength = 0;
+		
+		if(s==null){
+			throw new IllegalArgumentException();
+		}
+		
+		if(s.length() == 0){
+			return resultLength;
+		}
+		
+		String subStr = s.substring(0,1);
+		for (int i = 1; i < s.length(); i++) {
+			if(subStr.contains(s.substring(i,i+1))){
+				int index = subStr.indexOf(s.substring(i,i+1));
+				if(resultLength < subStr.length()){
+					resultLength = subStr.length();
+				}
+				subStr = subStr.substring(index+1,subStr.length());
+				subStr += s.substring(i,i+1);
+			}else{
+				subStr += s.substring(i,i+1);
+			}
+		}
+		if(resultLength < subStr.length()){
+			resultLength = subStr.length();
+		}
+		return resultLength;
+    }
 
 	
 	public static void main(String[] args) {
@@ -87,6 +117,8 @@ public class Three {
 		output = t.lengthOfLongestSubstring("x");
 		System.out.println(output);
 		output = t.lengthOfLongestSubstring("dvdf");
+		System.out.println(output);
+		output = t.lengthOfLongestSubstring("abcadxbb");
 		System.out.println(output);
 	}
 
