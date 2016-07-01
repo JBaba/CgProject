@@ -34,7 +34,9 @@ public class Calculator_II {
 	 }
 	
 	public static void main(String[] args) {
+		
 		Calculator_II c2 = new Calculator_II();
+		
 		System.out.println(c2.calculate("3+2*2"));
 		System.out.println(c2.calculate(" 3/2 "));
 		System.out.println(c2.calculate(" 3+5 / 2 "));
