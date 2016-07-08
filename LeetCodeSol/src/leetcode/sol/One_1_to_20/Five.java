@@ -21,11 +21,32 @@ public class Five {
 			if(longestPalindrome.length()<temp.length()){
 				longestPalindrome = temp;
 			}
-			System.out.println("i:"+i+" in:"+index+" -- "+s.substring(i-index,i+index+1));
+			
+			index = isPalindromeEven(i,s);
+			temp = s.substring(i-index,i+index+2);
+			System.out.println(temp);
+			if(longestPalindrome.length()<temp.length()){
+				longestPalindrome = temp;
+			}
 		}
 		
 		return longestPalindrome;
     }
+	
+	private int isPalindromeEven(int i, String s) {
+		int left = i,right = i;
+		for(int j=0;j<i;j++){
+			try{
+				char leftChar = s.charAt(left-j);
+				char rightChar = s.charAt(right+j);
+				if(leftChar != rightChar)
+					return j-1;
+			}catch(Exception e){
+				return j-1;
+			}
+		}
+		return i;
+	}
 	
 	private int isPalindromeOdd(int i, String s) {
 		int left = i,right = i;
