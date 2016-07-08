@@ -24,7 +24,6 @@ public class Five {
 			
 			index = isPalindromeEven(i,s);
 			temp = s.substring(i-index,i+index+2);
-			System.out.println(temp);
 			if(longestPalindrome.length()<temp.length()){
 				longestPalindrome = temp;
 			}
@@ -34,7 +33,7 @@ public class Five {
     }
 	
 	private int isPalindromeEven(int i, String s) {
-		int left = i,right = i;
+		int left = i,right = i+1;
 		for(int j=0;j<i;j++){
 			try{
 				char leftChar = s.charAt(left-j);
@@ -66,7 +65,7 @@ public class Five {
 	public static void main(String[] args) {
 
 		Five f = new Five();
-		System.out.println(f.longestPalindrome("abacfgfcaaba"));
+		System.out.println(f.longestPalindrome("aaxa"));
 		
 	}
 
