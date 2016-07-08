@@ -27,9 +27,11 @@ public class Five {
 			}
 			
 			index = isPalindromeEven(i,s);
-			temp = s.substring(i-index,i+index+2);
-			if(longestPalindrome.length()<temp.length()){
-				longestPalindrome = temp;
+			if(index != 0){
+				temp = s.substring(i-(index-1),i+index+1);
+				if(longestPalindrome.length()<temp.length()){
+					longestPalindrome = temp;
+				}
 			}
 		}
 		
@@ -38,17 +40,20 @@ public class Five {
 	
 	private int isPalindromeEven(int i, String s) {
 		int left = i,right = i+1;
+		int size = 0;
 		for(int j=0;j<i+1;j++){
 			try{
 				char leftChar = s.charAt(left-j);
 				char rightChar = s.charAt(right+j);
 				if(leftChar != rightChar)
-					return j;
+					return size;
+				else
+					size++;
 			}catch(Exception e){
-				return j-1;
+				return size;
 			}
 		}
-		return i;
+		return size;
 	}
 	
 	private int isPalindromeOdd(int i, String s) {
@@ -58,7 +63,7 @@ public class Five {
 				char leftChar = s.charAt(left-j);
 				char rightChar = s.charAt(right+j);
 				if(leftChar != rightChar)
-					return j;
+					return j-1;
 			}catch(Exception e){
 				return j-1;
 			}
@@ -69,9 +74,9 @@ public class Five {
 	public static void main(String[] args) {
 
 		Five f = new Five();
-		System.out.println(f.longestPalindrome("aaaaa"));
+		System.out.println(f.longestPalindrome("abb"));
 		System.out.println(f.longestPalindrome("aa"));
-		System.out.println(f.longestPalindrome("aaaa"));
+		System.out.println(f.longestPalindrome("aacaa"));
 		System.out.println(f.longestPalindrome("aaa"));
 		
 		
