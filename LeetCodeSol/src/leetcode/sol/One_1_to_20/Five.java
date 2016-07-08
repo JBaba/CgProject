@@ -17,10 +17,14 @@ public class Five {
 		
 		for(int i=0;i<s.length();i++){
 			int index = isPalindromeOdd(i,s);
+			String temp = s.substring(i-index,i+index+1);
+			if(longestPalindrome.length()<temp.length()){
+				longestPalindrome = temp;
+			}
 			System.out.println("i:"+i+" in:"+index+" -- "+s.substring(i-index,i+index+1));
 		}
 		
-		return s;
+		return longestPalindrome;
     }
 	
 	private int isPalindromeOdd(int i, String s) {
@@ -41,7 +45,7 @@ public class Five {
 	public static void main(String[] args) {
 
 		Five f = new Five();
-		System.out.println(f.longestPalindrome("abacdgfdcaba"));
+		System.out.println(f.longestPalindrome("abacfgfcaaba"));
 		
 	}
 
