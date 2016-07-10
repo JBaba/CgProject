@@ -12,6 +12,11 @@ import leetcode.sol.helper.ListNode;
  */
 public class N_23 {
 	
+	/**
+	 * This is time limit exceeded solution
+	 * @param lists
+	 * @return
+	 */
 	public ListNode mergeKLists(ListNode[] lists) {
 		ListNode dummyHead = new ListNode(0);
 		ListNode pointer = dummyHead;
