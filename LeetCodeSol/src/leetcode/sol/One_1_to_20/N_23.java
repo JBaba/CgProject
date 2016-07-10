@@ -1,6 +1,9 @@
 package leetcode.sol.One_1_to_20;
 
 
+import java.util.Comparator;
+import java.util.PriorityQueue;
+
 import leetcode.sol.helper.ListNode;
 
 
@@ -17,7 +20,7 @@ public class N_23 {
 	 * @param lists
 	 * @return
 	 */
-	public ListNode mergeKLists(ListNode[] lists) {
+	public ListNode mergeKLists2(ListNode[] lists) {
 		ListNode dummyHead = new ListNode(0);
 		ListNode pointer = dummyHead;
 		
@@ -71,6 +74,34 @@ public class N_23 {
 				return false;
 		}
 		return true;
+	}
+	
+	public ListNode mergeKLists(ListNode[] lists) {
+		ListNode dummyHead = new ListNode(0);
+		ListNode pointer = dummyHead;
+		
+		PriorityQueue<ListNode> q = new PriorityQueue<>(new Comparator<ListNode>() {
+			@Override
+			public int compare(ListNode o1, ListNode o2) {
+				return o1.val-o2.val;
+			}
+		});
+		
+		for(ListNode list :lists){
+			if(list!=null)
+				q.add(list);
+		}
+		
+		while (!q.isEmpty()) {
+			ListNode node = q.poll();
+			pointer.next = node;
+			pointer = pointer.next;
+			
+			if(node.next != null)
+				q.add(node.next);
+		}
+		
+		return dummyHead.next;
 	}
 
 	public static void main(String[] args) {
