@@ -1,4 +1,7 @@
 package leetcode.sol.One_1_to_20;
+
+import leetcode.sol.helper.ListNode;
+
 /**
  * 
  * You are given two linked lists representing two non-negative numbers. 
@@ -122,7 +125,7 @@ public class Two {
 }
 
 
-class ListNode {
+/*class ListNode {
     int val;
     public ListNode next;
     public ListNode(int x) { val = x; }
@@ -131,4 +134,4 @@ class ListNode {
 		return "ListNode [val=" + val + ", next=" + next + "]";
 	}
 
-}
+}*/
