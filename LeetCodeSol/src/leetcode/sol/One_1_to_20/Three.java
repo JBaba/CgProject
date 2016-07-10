@@ -1,7 +1,9 @@
 package leetcode.sol.One_1_to_20;
 
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
+import java.util.Set;
 
 /**
  * Given a string, find the length of the longest substring without repeating characters.
@@ -105,11 +107,57 @@ public class Three {
 		return resultLength;
     }
 
+	/**
+	 * using set solution
+	 * @param s
+	 * @return
+	 */
+	 public int lengthOfLongestSubstring4(String s) {
+	        int n = s.length();
+	        Set<Character> set = new HashSet<>();
+	        int ans = 0, i = 0, j = 0;
+	        while (i < n && j < n) {
+	            // try to extend the range [i, j]
+	            if (!set.contains(s.charAt(j))){
+	                set.add(s.charAt(j++));
+	                ans = Math.max(ans, j - i);
+	            }
+	            else {
+	                set.remove(s.charAt(i++));
+	            }
+	        }
+	        return ans;
+	    }
 	
 	public static void main(String[] args) {
 		Three t = new Three();
+		long startTime = System.currentTimeMillis();
 		int output = t.lengthOfLongestSubstring("abcabcbb");
-		System.out.println(output);
+		long endTime = System.currentTimeMillis();
+		
+		String s = "abcabcbb";
+		System.out.println(s);
+		
+		t.lengthOfLongestSubstring(s);
+		t.lengthOfLongestSubstring(s);
+		t.lengthOfLongestSubstring(s);
+		t.lengthOfLongestSubstring(s);
+		t.lengthOfLongestSubstring4(s);
+		t.lengthOfLongestSubstring4(s);
+		t.lengthOfLongestSubstring4(s);
+		t.lengthOfLongestSubstring4(s);
+		
+		startTime = System.currentTimeMillis();
+		output = t.lengthOfLongestSubstring(s);
+		endTime = System.currentTimeMillis();
+		System.out.println("Total execution time: " + (endTime - startTime) );
+		
+		startTime = System.currentTimeMillis();
+		output = t.lengthOfLongestSubstring4(s);
+		endTime = System.currentTimeMillis();
+		System.out.println("Total execution time: " + (endTime - startTime) );
+		
+		/*System.out.println(output);
 		output = t.lengthOfLongestSubstring("bbbbb");
 		System.out.println(output);
 		output = t.lengthOfLongestSubstring("pwwkew");
@@ -119,7 +167,7 @@ public class Three {
 		output = t.lengthOfLongestSubstring("dvdf");
 		System.out.println(output);
 		output = t.lengthOfLongestSubstring("abcadxbb");
-		System.out.println(output);
+		System.out.println(output);*/
 	}
 
 }
