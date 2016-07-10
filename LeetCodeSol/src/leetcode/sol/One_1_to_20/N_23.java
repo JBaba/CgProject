@@ -16,8 +16,56 @@ public class N_23 {
 		ListNode dummyHead = new ListNode(0);
 		ListNode pointer = dummyHead;
 		
+		ListNode[] copyList = new ListNode[lists.length];
+		int index = 0;
+		for(ListNode node:lists){
+			copyList[index] = node;
+			index++;
+		}
+		
+		while(!isEmpty(copyList)){
+			int val = getVal(copyList);
+			pointer.next = new ListNode(val);
+			pointer = pointer.next;
+		}
 		
 		return dummyHead.next;
+	}
+
+	private int getVal(ListNode[] lists) {
+		int index = 0;
+		int pointerIndex = 0;
+		Integer first = null;
+		Integer second = null;
+		for(ListNode node:lists){
+			if(first == null){
+				first = node.val;
+				index = pointerIndex;
+			}else if(second == null){
+				second = node.val;
+			}else{
+				second = node.val;
+			}
+			
+			if(second != null && first.compareTo(second) < 0){
+				first = second;
+				index = pointerIndex;
+			}
+			
+			pointerIndex++;
+		}
+		
+		lists[index] = lists[index].next; 
+		
+		return first.intValue();
+	}
+
+	private boolean isEmpty(ListNode[] lists) {
+		for(ListNode node:lists){
+			if(node.next != null)
+				return false;
+		}
+		return true;
 	}
 
 	public static void main(String[] args) {
