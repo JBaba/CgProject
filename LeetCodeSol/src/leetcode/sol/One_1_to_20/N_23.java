@@ -3,6 +3,13 @@ package leetcode.sol.One_1_to_20;
 
 import leetcode.sol.helper.ListNode;
 
+
+/**
+ * https://leetcode.com/problems/merge-k-sorted-lists/
+ * 
+ * @author jbaba
+ *
+ */
 public class N_23 {
 	
 	public ListNode mergeKLists(ListNode[] lists) {
