@@ -23,7 +23,13 @@ import leetcode.sol.helper.ListNode;
 
 public class Nineteen {
 
-	public ListNode removeNthFromEnd(ListNode head, int n) {
+	/**
+	 * Two Pass Solution
+	 * @param head
+	 * @param n
+	 * @return
+	 */
+	public ListNode removeNthFromEnd2(ListNode head, int n) {
 		
 		ListNode tempHead = new ListNode(0);
 		tempHead.next = head;
@@ -50,13 +56,33 @@ public class Nineteen {
 		return tempHead.next;
     }
 	
+	public ListNode removeNthFromEnd(ListNode head, int n) {
+		ListNode tempHead = new ListNode(0);
+		tempHead.next = head;
+		ListNode firstPointer = tempHead;
+		ListNode secondPointer = tempHead;
+		
+		int indexDiff= -1;
+		
+		while(firstPointer!=null){
+			if(indexDiff==n)
+				secondPointer=secondPointer.next;
+			else
+				indexDiff++;
+			firstPointer=firstPointer.next;
+		}
+		secondPointer.next = secondPointer.next.next;
+		
+		return tempHead.next;
+    }
+	
 	public static void main(String[] args) {
 		Two t = new Two();
 		ListNode l1 = t.init("12345");
 		System.out.println(l1);
 		
 		Nineteen n = new Nineteen();
-		l1 = n.removeNthFromEnd(l1, 5);
+		l1 = n.removeNthFromEnd(l1, 1);
 		System.out.println(l1);
 	}
 
