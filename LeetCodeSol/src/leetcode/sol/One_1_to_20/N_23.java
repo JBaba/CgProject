@@ -38,20 +38,20 @@ public class N_23 {
 		Integer first = null;
 		Integer second = null;
 		for(ListNode node:lists){
-			if(first == null){
+			if(first == null && node != null){
 				first = node.val;
 				index = pointerIndex;
-			}else if(second == null){
+			}else if(second == null && node != null){
 				second = node.val;
-			}else{
+			}else if(node != null){
 				second = node.val;
 			}
 			
-			if(second != null && first.compareTo(second) < 0){
+			if(second != null && first.compareTo(second) > 0){
 				first = second;
 				index = pointerIndex;
 			}
-			
+		
 			pointerIndex++;
 		}
 		
@@ -62,7 +62,7 @@ public class N_23 {
 
 	private boolean isEmpty(ListNode[] lists) {
 		for(ListNode node:lists){
-			if(node.next != null)
+			if(node != null)
 				return false;
 		}
 		return true;
