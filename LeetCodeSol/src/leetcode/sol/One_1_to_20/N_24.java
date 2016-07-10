@@ -15,7 +15,7 @@ import leetcode.sol.helper.ListNode;
 
 public class N_24 {
 	
-	 public ListNode swapPairs(ListNode head) {
+	 public ListNode swapPairs2(ListNode head) {
 		 ListNode dummy = new ListNode(0);
 		 dummy.next = head;
 		 ListNode pointer = dummy.next;
@@ -43,6 +43,29 @@ public class N_24 {
 		 
 		 return dummy.next;
 	 }
+	 
+	 public ListNode swapPairs(ListNode head) {
+		    if(head == null || head.next == null)   
+		        return head;
+		 
+		    ListNode h = new ListNode(0);
+		    h.next = head;
+		    ListNode p = h;
+		 
+		    while(p.next != null && p.next.next != null){
+		        //use t1 to track first node
+		        ListNode t1 = p;
+		        p = p.next;
+		        t1.next = p.next;
+		 
+		        //use t2 to track next node of the pair
+		        ListNode t2 = p.next.next;
+		        p.next.next = p;
+		        p.next = t2;
+		    }
+		 
+		    return h.next;
+	}
 
 	public static void main(String[] args) {
 		
