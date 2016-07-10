@@ -9,6 +9,10 @@ import leetcode.sol.helper.ListNode;
 	Given 1->2->3->4, you should return the list as 2->1->4->3.
 	
 	Your algorithm should use only constant space. You may not modify the values in the list, only nodes itself can be changed.
+	
+	problem : https://leetcode.com/problems/swap-nodes-in-pairs/
+	
+	web sol : http://www.programcreek.com/2014/04/leetcode-swap-nodes-in-pairs-java/
  * @author jbaba
  *
  */
