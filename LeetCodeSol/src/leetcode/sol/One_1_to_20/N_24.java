@@ -16,14 +16,38 @@ import leetcode.sol.helper.ListNode;
 public class N_24 {
 	
 	 public ListNode swapPairs(ListNode head) {
+		 ListNode dummy = new ListNode(0);
+		 dummy.next = head;
+		 ListNode pointer = dummy.next;
 		 
-		 return head;
+		 int index = 1;
+		 while(pointer != null){
+			 
+			 if(index == 1 || index == 3){
+				 if(pointer.next != null){
+					 ListNode first = new ListNode(pointer.val);
+					 first.next = pointer.next.next;
+					 
+					 pointer.val = pointer.next.val;
+					 pointer.next = first;
+				 }
+				 
+				 index = 1;
+			 }
+			 
+			 pointer = pointer.next;
+			 index ++;
+			 
+		 }
+		 
+		 
+		 return dummy.next;
 	 }
 
 	public static void main(String[] args) {
 		
 		Two t = new Two();
-		ListNode l1 = t.init("1248");
+		ListNode l1 = t.init("124896");
 		System.out.println(l1);
 		
 		N_24 n = new N_24();
