@@ -36,6 +36,24 @@ public class N_10 {
 
 	public static void main(String[] args) {
 
+		N_10 n = new N_10();
+		
+		boolean ans = false;
+		
+		ans = n.isMatch("aa","a");
+		System.out.println("isMatch('aa','a') → false :->"+ans);
+		ans = n.isMatch("aa","aa");
+		System.out.println("isMatch('aa','aa') → true :->"+ans);
+		ans = n.isMatch("aaa","aa");
+		System.out.println("isMatch('aaa','aa') → false :->"+ans);
+		ans = n.isMatch("aa", "a*");
+		System.out.println("isMatch('aa', 'a*') → true :->"+ans);
+		ans = n.isMatch("aa", ".*");
+		System.out.println("isMatch('aa', '.*') → true :->"+ans);
+		ans = n.isMatch("ab", ".*");
+		System.out.println("isMatch('ab', '.*') → true :->"+ans);
+		ans = n.isMatch("aab", "c*a*b");
+		System.out.println("isMatch('aab', 'c*a*b') → true :->"+ans);
 	}
 
 }
