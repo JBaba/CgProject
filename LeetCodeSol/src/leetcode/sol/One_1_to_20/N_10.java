@@ -33,7 +33,9 @@ public class N_10 {
 		
 		if(!s.contains(".") && !s.contains("*") && s.length()!=p.length())
 			return false;
-        
+		if(!s.contains(".") && !s.contains("*") && s.length()==p.length())
+			return s.equals(p);
+		
 		return false;
     }
 
