@@ -30,6 +30,9 @@ public class N_10 {
 	}
 	
 	public boolean isMatch(String s, String p) {
+		
+		if(!s.contains(".") && !s.contains("*") && s.length()!=p.length())
+			return false;
         
 		return false;
     }
