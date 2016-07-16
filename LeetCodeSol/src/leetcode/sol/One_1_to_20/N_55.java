@@ -19,7 +19,30 @@ package leetcode.sol.One_1_to_20;
 public class N_55 {
 
 	public boolean canJump(int[] nums) {
-		return false;
+			if(nums == null){
+				throw new IllegalArgumentException();
+			}
+			if(nums.length == 0){
+				return false;
+			}
+			if(nums.length == 1){
+				return true;
+			}
+			int size = nums.length;
+			
+			for(int i=0;i<size;i++){
+				
+				if(i == (size))
+					return true;
+				
+				if(nums[i] == 0)
+					return false;
+	
+				int value = nums[i];
+				i = i + value - 1;
+			}
+			
+			return true;
     }
 	
 	public static void main(String[] args) {
@@ -32,6 +55,18 @@ public class N_55 {
 		
 		int[] B = {3,2,1,0,4};
 		ans = n.canJump(B);
+		System.out.println(ans);
+		
+		int[] C = {1,0,2};
+		ans = n.canJump(C);
+		System.out.println(ans);
+		
+		int[] D = {1,2};
+		ans = n.canJump(D);
+		System.out.println(ans);
+		
+		int[] E = {2,0,0};
+		ans = n.canJump(E);
 		System.out.println(ans);
 		
 	}
