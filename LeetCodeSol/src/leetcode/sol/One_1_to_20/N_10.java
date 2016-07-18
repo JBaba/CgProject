@@ -52,8 +52,12 @@ public class N_10 {
 					continue;
 				}else if(c == s.charAt(index)){
 					index++;
+					findNextMatch = false;
 				}else{
-					return false;
+					if(!findNextMatch)
+						return false;
+					index++;
+					i--;
 				}
 			}
 			return ans;
@@ -78,6 +82,10 @@ public class N_10 {
 		System.out.println("isMatch('aa', 'a*') → true :->"+ans);
 		ans = n.isMatch("aa", "b*");
 		System.out.println("isMatch('aa', 'b*') → true :->"+ans);
+		ans = n.isMatch("aaabcca", "a*c*");
+		System.out.println("isMatch('aaabcca', 'a*c*') → true :->"+ans);
+		ans = n.isMatch("aaabcca", "a*cx");
+		System.out.println("isMatch('aaabcca', 'a*cx') → true :->"+ans);
 		ans = n.isMatch("aa", ".*");
 		System.out.println("isMatch('aa', '.*') → true :->"+ans);
 		ans = n.isMatch("ab", ".*");
