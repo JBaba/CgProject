@@ -31,10 +31,33 @@ public class N_10 {
 	
 	public boolean isMatch(String s, String p) {
 		
-		if(!s.contains(".") && !s.contains("*") && s.length()!=p.length())
+		if(!p.contains(".") && !p.contains("*") && s.length()!=p.length())
 			return false;
-		if(!s.contains(".") && !s.contains("*") && s.length()==p.length())
+		if(!p.contains(".") && !p.contains("*") && s.length()==p.length())
 			return s.equals(p);
+		if(!p.contains("*") && p.length()==1)
+			return true;
+		
+		boolean ans = true;
+		
+		if(!p.contains(".")){
+			int index = 0;
+			boolean findNextMatch = false;
+			for(int i=0;i<p.length() && index<s.length();i++){
+				char c = p.charAt(i);
+				if(c == '*'){
+					findNextMatch = true;
+					if(i == (p.length()))
+						return true;
+					continue;
+				}else if(c == s.charAt(index)){
+					index++;
+				}else{
+					return false;
+				}
+			}
+			return ans;
+		}
 		
 		return false;
     }
@@ -53,6 +76,8 @@ public class N_10 {
 		System.out.println("isMatch('aaa','aa') → false :->"+ans);
 		ans = n.isMatch("aa", "a*");
 		System.out.println("isMatch('aa', 'a*') → true :->"+ans);
+		ans = n.isMatch("aa", "b*");
+		System.out.println("isMatch('aa', 'b*') → true :->"+ans);
 		ans = n.isMatch("aa", ".*");
 		System.out.println("isMatch('aa', '.*') → true :->"+ans);
 		ans = n.isMatch("ab", ".*");
