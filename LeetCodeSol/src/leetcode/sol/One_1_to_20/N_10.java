@@ -29,7 +29,7 @@ public class N_10 {
 	public N_10() {
 	}
 	
-	public boolean isMatch(String s, String p) {
+	public boolean isMatch2(String s, String p) {
 		
 		if(!p.contains(".") && !p.contains("*") && s.length()!=p.length())
 			return false;
@@ -65,6 +65,43 @@ public class N_10 {
 		
 		return false;
     }
+	
+	public boolean isMatch(String s, String p) {
+		
+		if(!p.contains(".") && !p.contains("*") && s.length()!=p.length())
+			return false;
+		if(!p.contains(".") && !p.contains("*") && s.length()==p.length())
+			return s.equals(p);
+		if(!p.contains("*") && p.length()==1)
+			return true;
+		
+		boolean ans = true;
+		
+		int index = 0;
+		boolean findNextMatch = false;
+		for(int i=0;i<p.length() && index<s.length();i++){
+			char c = p.charAt(i);
+			if(c == '*'){
+				findNextMatch = true;
+				if(i == (p.length()))
+					return true;
+				continue;
+			}else if(c == '.'){
+				index++;
+				continue;
+			}else if(c == s.charAt(index)){
+				index++;
+				findNextMatch = false;
+			}else{
+				if(!findNextMatch)
+					return false;
+				index++;
+				i--;
+			}
+		}
+		
+		return ans;
+    }
 
 	public static void main(String[] args) {
 
@@ -86,10 +123,16 @@ public class N_10 {
 		System.out.println("isMatch('aaabcca', 'a*c*') → true :->"+ans);
 		ans = n.isMatch("aaabcca", "a*cx");
 		System.out.println("isMatch('aaabcca', 'a*cx') → true :->"+ans);
+		ans = n.isMatch("aaabcca", "a*c.");
+		System.out.println("isMatch('aaabcca', 'a*c.') → true :->"+ans);
+		ans = n.isMatch("aaabcca", "a*c.p");
+		System.out.println("isMatch('aaabcca', 'a*c.p') → true :->"+ans);
 		ans = n.isMatch("aa", ".*");
 		System.out.println("isMatch('aa', '.*') → true :->"+ans);
 		ans = n.isMatch("ab", ".*");
 		System.out.println("isMatch('ab', '.*') → true :->"+ans);
+		ans = n.isMatch("aab", "*a*b");
+		System.out.println("isMatch('aab', '*a*b') → true :->"+ans);
 		ans = n.isMatch("aab", "c*a*b");
 		System.out.println("isMatch('aab', 'c*a*b') → true :->"+ans);
 	}
