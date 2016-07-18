@@ -12,6 +12,8 @@ package leetcode.sol.One_1_to_20;
 	
 	string convert(string text, int nRows);
 	convert("PAYPALISHIRING", 3) should return "PAHNAPLSIIGYIR".
+	
+	https://leetcode.com/problems/zigzag-conversion/
  * 
  * @author nviradia
  *
