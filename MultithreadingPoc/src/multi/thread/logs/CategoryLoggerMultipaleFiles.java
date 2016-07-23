@@ -6,10 +6,14 @@ import org.apache.log4j.Category;
 import org.apache.log4j.Logger;
 import org.apache.log4j.Priority;
 
+/**
+ * Logging manager 
+ * @author jbaba
+ *
+ */
 public class CategoryLoggerMultipaleFiles {
 	
 	HashMap<LogCategory, Category> myLogHashMap = new HashMap<LogCategory, Category>();
-	//Logger.getLogger(ProgLoggerMultipaleFiles.class);
 	
 	public CategoryLoggerMultipaleFiles() {
 		JCategoryLogger jlog = new JCategoryLogger();
@@ -23,20 +27,9 @@ public class CategoryLoggerMultipaleFiles {
 		myLogHashMap.put(LogCategory.MC, Category.getInstance("MC"));
 		myLogHashMap.put(LogCategory.DC, Category.getInstance("DC"));
 		
-		Logger.getRootLogger().info("Hello");
+		Logger.getRootLogger().info("Msg from root ...");
 		
-		String parameter = "Naimish";
-		  
-		log(LogCategory.mylog,Priority.DEBUG,"This is debug : " + parameter);
-		log(LogCategory.mylog,Priority.INFO,"This is info : " + parameter);
-		log(LogCategory.mylog,Priority.WARN,"This is warn : " + parameter);
-		log(LogCategory.mylog,Priority.ERROR,"This is error : " + parameter);
-		log(LogCategory.mylog,Priority.FATAL,"This is fatal : " + parameter);
-		
-		log(LogCategory.HC,Priority.FATAL,"HC");
-		log(LogCategory.MC,Priority.FATAL,"MC");
-		log(LogCategory.DC,Priority.FATAL,"DC");
-		
+		log(LogCategory.mylog,Priority.DEBUG,"Init mylog category ....");
 	}
 	
 	public void log(LogCategory category,Priority priority,String msg){
