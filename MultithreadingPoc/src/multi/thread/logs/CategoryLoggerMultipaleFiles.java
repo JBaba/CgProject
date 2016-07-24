@@ -47,3 +47,29 @@ public class CategoryLoggerMultipaleFiles {
 	}
 
 }
+
+/**
+ * Enum for Singleton Access to Logs
+ * @author jbaba
+ *
+ */
+enum SLog
+{
+    INSTANCE;
+
+    // instance vars, constructor
+    private final CategoryLoggerMultipaleFiles log;
+
+    SLog()
+    {
+        // Initialize the log
+        log = new CategoryLoggerMultipaleFiles();
+    }
+
+    // getter
+    public CategoryLoggerMultipaleFiles getInstance()
+    {
+        return log;
+    }
+
+}
