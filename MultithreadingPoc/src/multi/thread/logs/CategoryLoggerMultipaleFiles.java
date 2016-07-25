@@ -39,6 +39,32 @@ public class CategoryLoggerMultipaleFiles {
 	public enum LogCategory{
 		mylog,HC,MC,DC
 	}
+	
+	/**
+	 * Enum for Singleton Access to Logs
+	 * @author jbaba
+	 *
+	 */
+	public enum SLog
+	{
+	    INSTANCE;
+
+	    // instance vars, constructor
+	    private final CategoryLoggerMultipaleFiles log;
+
+	    SLog()
+	    {
+	        // Initialize the log
+	        log = new CategoryLoggerMultipaleFiles();
+	    }
+
+	    // getter
+	    public CategoryLoggerMultipaleFiles getInstance()
+	    {
+	        return log;
+	    }
+
+	}
 
 	public static void main(String[] args) {
 
@@ -48,28 +74,4 @@ public class CategoryLoggerMultipaleFiles {
 
 }
 
-/**
- * Enum for Singleton Access to Logs
- * @author jbaba
- *
- */
-enum SLog
-{
-    INSTANCE;
 
-    // instance vars, constructor
-    private final CategoryLoggerMultipaleFiles log;
-
-    SLog()
-    {
-        // Initialize the log
-        log = new CategoryLoggerMultipaleFiles();
-    }
-
-    // getter
-    public CategoryLoggerMultipaleFiles getInstance()
-    {
-        return log;
-    }
-
-}
