@@ -18,6 +18,7 @@ public class Application {
 	public static void main(String[] args) {
 		SLog.INSTANCE.getInstance().log(LogCategory.mylog, Priority.INFO, "Application Started..");
 		Application app = new Application();
+		SLog.INSTANCE.getInstance().log(LogCategory.mylog, Priority.INFO, "Application Main Thread ended.");
 	}
 
 }
