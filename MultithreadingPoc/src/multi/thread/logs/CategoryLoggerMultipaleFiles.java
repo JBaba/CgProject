@@ -13,15 +13,19 @@ import org.apache.log4j.Priority;
  */
 public class CategoryLoggerMultipaleFiles {
 	
+	// Map of all category
 	HashMap<LogCategory, Category> myLogHashMap = new HashMap<LogCategory, Category>();
 	
 	public CategoryLoggerMultipaleFiles() {
 		JCategoryLogger jlog = new JCategoryLogger();
+		
+		// Init file keys for file adapter
 		jlog.startFileLog("mylog");
 		jlog.startFileLog("HC");
 		jlog.startFileLog("MC");
 		jlog.startFileLog("DC");
 		
+		// create category and store in map
 		myLogHashMap.put(LogCategory.mylog, Category.getInstance("mylog"));
 		myLogHashMap.put(LogCategory.HC, Category.getInstance("HC"));
 		myLogHashMap.put(LogCategory.MC, Category.getInstance("MC"));
@@ -32,10 +36,21 @@ public class CategoryLoggerMultipaleFiles {
 		log(LogCategory.mylog,Priority.DEBUG,"Init mylog category ....");
 	}
 	
+	/**
+	 * Method for send log msg
+	 * @param category file name
+	 * @param priority type of msg
+	 * @param msg values
+	 */
 	public void log(LogCategory category,Priority priority,String msg){
 		myLogHashMap.get(category).log(priority, msg);
 	}
 	
+	/**
+	 * List of categories
+	 * @author jbaba
+	 *
+	 */
 	public enum LogCategory{
 		mylog,HC,MC,DC
 	}
