@@ -15,6 +15,7 @@ public class Application {
 	public Application() {
 	}
 	
+	@SuppressWarnings("deprecation")
 	public static void main(String[] args) {
 		SLog.INSTANCE.getInstance().log(LogCategory.mylog, Priority.INFO, "Application Started..");
 		Application app = new Application();
