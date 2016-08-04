@@ -46,6 +46,11 @@ public class FsPayment extends Entity {
         setUserById(paymentKey);
     }
 
+	/**
+	 * Get record for given payment key
+	 * @param paymentKey
+	 * @throws SQLException
+	 */
     private void setUserById(BigInteger paymentKey) throws SQLException {
         ResultSet resultSet = getResultSet("SELECT * FROM FS_PAYMENT WHERE payment_Key = " + paymentKey);
         if(resultSet.next()) {
@@ -68,5 +73,88 @@ public class FsPayment extends Entity {
 				+ ", paymentEndDt=" + paymentEndDt + ", createDt=" + createDt + ", userId=" + userId + ", payAmt="
 				+ payAmt + ", processSw=" + processSw + ", caseNum=" + caseNum + ", edgNum=" + edgNum + "]";
 	}
+	
+	
 
+	public BigInteger getPaymentKey() {
+		return paymentKey;
+	}
+
+	public void setPaymentKey(BigInteger paymentKey) {
+		this.paymentKey = paymentKey;
+	}
+
+	public String getProgCd() {
+		return progCd;
+	}
+
+	public void setProgCd(String progCd) {
+		this.progCd = progCd;
+	}
+
+	public String getPaymentBegDt() {
+		return paymentBegDt;
+	}
+
+	public void setPaymentBegDt(String paymentBegDt) {
+		this.paymentBegDt = paymentBegDt;
+	}
+
+	public String getPaymentEndDt() {
+		return paymentEndDt;
+	}
+
+	public void setPaymentEndDt(String paymentEndDt) {
+		this.paymentEndDt = paymentEndDt;
+	}
+
+	public String getCreateDt() {
+		return createDt;
+	}
+
+	public void setCreateDt(String createDt) {
+		this.createDt = createDt;
+	}
+
+	public String getUserId() {
+		return userId;
+	}
+
+	public void setUserId(String userId) {
+		this.userId = userId;
+	}
+
+	public long getPayAmt() {
+		return payAmt;
+	}
+
+	public void setPayAmt(long payAmt) {
+		this.payAmt = payAmt;
+	}
+
+	public String getProcessSw() {
+		return processSw;
+	}
+
+	public void setProcessSw(String processSw) {
+		this.processSw = processSw;
+	}
+
+	public String getCaseNum() {
+		return caseNum;
+	}
+
+	public void setCaseNum(String caseNum) {
+		this.caseNum = caseNum;
+	}
+
+	public String getEdgNum() {
+		return edgNum;
+	}
+
+	public void setEdgNum(String edgNum) {
+		this.edgNum = edgNum;
+	}
+
+	
 }
