@@ -36,7 +36,13 @@ public class N_12 {
 	}
 	
 	public String intToRoman(int num) {
-		return null;
+		if(initNumbers.containsKey(num)){
+			return initNumbers.get(num);
+		}
+		
+		String ans = "";
+		
+		return ans;
 	}
 
 	public static void main(String[] args) {
