@@ -16,9 +16,12 @@ import java.util.Map;
  */
 public class N_12 {
 	
+	// list of number to Roman latter
 	Map<Integer,String> initNumbers = new HashMap<Integer,String>();
 	
 	public N_12() {
+		// init Roman numbers
+		initNumbers.put(0, "");
 		initNumbers.put(1, "I");
 		initNumbers.put(2, "II");
 		initNumbers.put(3, "III");
@@ -35,12 +38,63 @@ public class N_12 {
 		initNumbers.put(1000, "M");
 	}
 	
+	/**
+	 * Method to convert init To Roman
+	 * @param num
+	 * @return
+	 */
 	public String intToRoman(int num) {
+		
+		if(num == 0){
+			return "";
+		}
+		
 		if(initNumbers.containsKey(num)){
 			return initNumbers.get(num);
 		}
 		
+		// variable returns string
 		String ans = "";
+		
+		// copy of number
+		int copyNum = num;
+		int digit = 0;
+		
+		// 1st digit
+		digit = copyNum%10;
+		copyNum = copyNum - digit;
+		ans += initNumbers.get(digit);
+		System.out.println("2. Num:"+copyNum+" digit:"+digit+" Ans:"+ans);
+		
+		// number is smaller return
+		if(num < 100){
+			return ans;
+		}
+		
+		//2nd digit
+		digit = copyNum%100;
+		copyNum = copyNum - digit;
+		
+		// check for 10,50
+		if(initNumbers.containsKey(num)){
+			ans = initNumbers.get(num)+ans;
+		}
+		System.out.println("3. Num:"+copyNum+" digit:"+digit+" Ans:"+ans);
+		
+		// number is smaller return
+		if(num < 1000){
+			return ans;
+		}
+		
+		//3rd digit
+		digit = copyNum%1000;
+		copyNum = copyNum - digit;
+		
+		// check for 100,500
+		if(initNumbers.containsKey(num)){
+			ans = initNumbers.get(num)+ans;
+		}
+		System.out.println("4. Num:"+copyNum+" digit:"+digit+" Ans:"+ans);		
 		
 		return ans;
 	}
@@ -48,6 +102,9 @@ public class N_12 {
 	public static void main(String[] args) {
 		N_12 n = new N_12();
 		System.out.println(n.intToRoman(1));
+		System.out.println(n.intToRoman(11));
+		System.out.println(n.intToRoman(14));
+		System.out.println(n.intToRoman(16));
 	}
 
 }
