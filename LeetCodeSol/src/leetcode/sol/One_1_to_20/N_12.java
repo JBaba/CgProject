@@ -101,10 +101,10 @@ public class N_12 {
 
 	public static void main(String[] args) {
 		N_12 n = new N_12();
-		System.out.println(n.intToRoman(1));
-		System.out.println(n.intToRoman(11));
-		System.out.println(n.intToRoman(14));
-		System.out.println(n.intToRoman(16));
+		System.out.println("1 -> I :"+n.intToRoman(1));
+		System.out.println("11 -> XI :"+n.intToRoman(11));
+		System.out.println("14 -> XIV :"+n.intToRoman(14));
+		System.out.println("16 -> XVI :"+n.intToRoman(16));
 	}
 
 }
