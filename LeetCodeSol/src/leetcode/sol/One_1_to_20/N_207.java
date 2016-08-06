@@ -1,5 +1,8 @@
 package leetcode.sol.One_1_to_20;
 
+import java.util.HashSet;
+import java.util.Set;
+
 /**
  * There are a total of n courses you have to take, labeled from 0 to n - 1.
 
@@ -25,12 +28,27 @@ package leetcode.sol.One_1_to_20;
 public class N_207 {
 	
 	public boolean canFinish(int numCourses, int[][] prerequisites) {
-		
-		return false;
+		if(prerequisites.length==0){
+			return true;
+		}
+		Set<Integer> list = new HashSet<>();
+		list.add(prerequisites[0][0]);
+		for(int i=0;i<prerequisites.length;i++){
+			list.add(prerequisites[i][0]);
+			if(list.contains(prerequisites[i][1])){
+				return false;
+			}else{
+				list.add(prerequisites[i][1]);
+			}
+		}
+		return true;
     }
 
 	public static void main(String[] args) {
-
+		System.out.println("N 207");
+		N_207 n = new N_207();
+		int[][] prerequisites = {{1,0},{0,1}};
+		System.out.println(n.canFinish(2, prerequisites));
 	}
 
 }
