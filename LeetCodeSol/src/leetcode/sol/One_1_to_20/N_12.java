@@ -67,7 +67,7 @@ public class N_12 {
 		System.out.println("2. Num:"+copyNum+" digit:"+digit+" Ans:"+ans);
 		
 		// number is smaller return
-		if(num < 100){
+		if(num < 10){
 			return ans;
 		}
 		
@@ -76,13 +76,13 @@ public class N_12 {
 		copyNum = copyNum - digit;
 		
 		// check for 10,50
-		if(initNumbers.containsKey(num)){
-			ans = initNumbers.get(num)+ans;
+		if(initNumbers.containsKey(digit)){
+			ans = initNumbers.get(digit)+ans;
 		}
 		System.out.println("3. Num:"+copyNum+" digit:"+digit+" Ans:"+ans);
 		
 		// number is smaller return
-		if(num < 1000){
+		if(num < 100){
 			return ans;
 		}
 		
@@ -91,8 +91,8 @@ public class N_12 {
 		copyNum = copyNum - digit;
 		
 		// check for 100,500
-		if(initNumbers.containsKey(num)){
-			ans = initNumbers.get(num)+ans;
+		if(initNumbers.containsKey(digit)){
+			ans = initNumbers.get(digit)+ans;
 		}
 		System.out.println("4. Num:"+copyNum+" digit:"+digit+" Ans:"+ans);		
 		

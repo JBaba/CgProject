@@ -28,9 +28,9 @@ import java.util.Set;
 public class N_207 {
 	
 	public boolean canFinish(int numCourses, int[][] prerequisites) {
-		if(prerequisites.length==0){
-			return true;
-		}
+			if(prerequisites.length==0){
+				return true;
+			}
 		Set<Integer> list = new HashSet<>();
 		list.add(prerequisites[0][0]);
 		for(int i=0;i<prerequisites.length;i++){
