@@ -40,9 +40,9 @@ public class FsPayment extends Entity {
 		this.edgNum = edgNum;
 	}
 
-	public FsPayment(BigInteger paymentKey) throws SQLException {
+	public FsPayment(long paymentKey) throws SQLException {
         super();
-        this.paymentKey = paymentKey;
+        this.paymentKey = new BigInteger(paymentKey+"");
         setUserById(paymentKey);
     }
 
@@ -51,10 +51,10 @@ public class FsPayment extends Entity {
 	 * @param paymentKey
 	 * @throws SQLException
 	 */
-    private void setUserById(BigInteger paymentKey) throws SQLException {
+    private void setUserById(long paymentKey) throws SQLException {
         ResultSet resultSet = getResultSet("SELECT * FROM FS_PAYMENT WHERE payment_Key = " + paymentKey);
         if(resultSet.next()) {
-        	paymentKey = new BigInteger(resultSet.getString("payment_Key"));
+        	this.paymentKey = new BigInteger(resultSet.getString("payment_Key"));
         	progCd = resultSet.getString("prog_cd");
         	paymentBegDt = resultSet.getString("payment_beg_dt");
         	paymentEndDt = resultSet.getString("payment_end_dt");
@@ -74,7 +74,13 @@ public class FsPayment extends Entity {
 				+ payAmt + ", processSw=" + processSw + ", caseNum=" + caseNum + ", edgNum=" + edgNum + "]";
 	}
 	
-	
+	public static void main(String args){
+		try{
+			FsPayment fs = new FsPayment(1);
+		}catch(Exception e){
+			
+		}
+	}
 
 	public BigInteger getPaymentKey() {
 		return paymentKey;
