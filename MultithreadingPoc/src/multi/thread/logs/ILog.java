@@ -17,6 +17,10 @@ public class ILog {
 	public ILog() {
 	}
 
+	/**
+	 * Method directly prints msg to consol and added to mylog file.
+	 * @param msg
+	 */
 	public static void iclog(String msg){
 		ilog.log(LogCategory.mylog, Priority.INFO, msg);
 	}
