@@ -25,4 +25,7 @@ public class ILog {
 		ilog.log(LogCategory.mylog, Priority.INFO, msg);
 	}
 	
+	public static void iclog(Exception e){
+		ilog.log(LogCategory.mylog, Priority.ERROR, e);
+	}
 }

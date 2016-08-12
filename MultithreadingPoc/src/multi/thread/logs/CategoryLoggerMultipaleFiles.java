@@ -43,7 +43,18 @@ public class CategoryLoggerMultipaleFiles {
 	 * @param msg values
 	 */
 	public void log(LogCategory category,Priority priority,String msg){
-		myLogHashMap.get(category).log(priority, msg);
+		if(priority == Priority.INFO)
+			myLogHashMap.get(category).log(priority, msg);
+	}
+	
+	/**
+	 * Method prints exception stack trace
+	 * @param category file name
+	 * @param priority type of msg
+	 * @param msg values
+	 */
+	public void log(LogCategory category,Priority priority,Exception msg){
+		myLogHashMap.get(category).error("Exception:", msg);
 	}
 	
 	/**
