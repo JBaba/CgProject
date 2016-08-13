@@ -25,6 +25,10 @@ public class ILog {
 		ilog.log(LogCategory.mylog, Priority.INFO, msg);
 	}
 	
+	/**
+	 * Method directly prints exception stack trace to consol and file
+	 * @param e
+	 */
 	public static void iclog(Exception e){
 		ilog.log(LogCategory.mylog, Priority.ERROR, e);
 	}
