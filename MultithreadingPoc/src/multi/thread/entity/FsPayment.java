@@ -5,6 +5,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import multi.thread.jdbc.Entity;
+import multi.thread.logs.ILog;
 
 /**
  * FsPayment entity for FS_PAYMENT table
@@ -52,7 +53,7 @@ public class FsPayment extends Entity {
 	 * @throws SQLException
 	 */
     private void setUserById(long paymentKey) throws SQLException {
-        ResultSet resultSet = getResultSet("SELECT * FROM Fs_Payment WHERE payment_Key = " + paymentKey);
+        ResultSet resultSet = getResultSet("SELECT * FROM FS_Payment WHERE payment_Key = " + paymentKey);
         if(resultSet.next()) {
         	this.paymentKey = new BigInteger(resultSet.getString("payment_Key"));
         	progCd = resultSet.getString("prog_cd");
@@ -77,9 +78,9 @@ public class FsPayment extends Entity {
 	public static void main(String[] args){
 		try{
 			FsPayment fs = new FsPayment(1);
-			System.out.println(fs.toString());
+			ILog.iclog(fs.toString());
 		}catch(Exception e){
-			e.printStackTrace();
+			ILog.iclog(e);
 		}
 	}
 

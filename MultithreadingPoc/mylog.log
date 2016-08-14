@@ -23,3 +23,43 @@
 2016-09-17 16:17:30,775 INFO  [mylog] Application Started
 2016-09-17 16:19:23,569 DEBUG [mylog] Init mylog category ....
 2016-09-17 16:19:23,569 INFO  [mylog] Application Started..
+2016-09-17 20:52:16,811 ERROR [mylog] Exception:
+com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: Table 'OCricket.FS_Payment' doesn't exist
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:423)
+	at com.mysql.jdbc.Util.handleNewInstance(Util.java:404)
+	at com.mysql.jdbc.Util.getInstance(Util.java:387)
+	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:942)
+	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:3966)
+	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:3902)
+	at com.mysql.jdbc.MysqlIO.sendCommand(MysqlIO.java:2526)
+	at com.mysql.jdbc.MysqlIO.sqlQueryDirect(MysqlIO.java:2673)
+	at com.mysql.jdbc.ConnectionImpl.execSQL(ConnectionImpl.java:2545)
+	at com.mysql.jdbc.ConnectionImpl.execSQL(ConnectionImpl.java:2503)
+	at com.mysql.jdbc.StatementImpl.executeQuery(StatementImpl.java:1369)
+	at multi.thread.jdbc.Entity.getResultSet(Entity.java:26)
+	at multi.thread.entity.FsPayment.setUserById(FsPayment.java:56)
+	at multi.thread.entity.FsPayment.<init>(FsPayment.java:47)
+	at multi.thread.entity.FsPayment.main(FsPayment.java:80)
+2016-09-17 20:52:46,902 ERROR [mylog] Exception:
+com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: Table 'OCricket.FS_Payment' doesn't exist
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:423)
+	at com.mysql.jdbc.Util.handleNewInstance(Util.java:404)
+	at com.mysql.jdbc.Util.getInstance(Util.java:387)
+	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:942)
+	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:3966)
+	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:3902)
+	at com.mysql.jdbc.MysqlIO.sendCommand(MysqlIO.java:2526)
+	at com.mysql.jdbc.MysqlIO.sqlQueryDirect(MysqlIO.java:2673)
+	at com.mysql.jdbc.ConnectionImpl.execSQL(ConnectionImpl.java:2545)
+	at com.mysql.jdbc.ConnectionImpl.execSQL(ConnectionImpl.java:2503)
+	at com.mysql.jdbc.StatementImpl.executeQuery(StatementImpl.java:1369)
+	at multi.thread.jdbc.Entity.getResultSet(Entity.java:26)
+	at multi.thread.entity.FsPayment.setUserById(FsPayment.java:56)
+	at multi.thread.entity.FsPayment.<init>(FsPayment.java:47)
+	at multi.thread.entity.FsPayment.main(FsPayment.java:80)
