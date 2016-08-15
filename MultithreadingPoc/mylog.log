@@ -63,3 +63,15 @@ com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: Table 'OCricket.FS_Pa
 	at multi.thread.entity.FsPayment.setUserById(FsPayment.java:56)
 	at multi.thread.entity.FsPayment.<init>(FsPayment.java:47)
 	at multi.thread.entity.FsPayment.main(FsPayment.java:80)
+2016-09-17 20:54:02,948 INFO  [mylog] FsPayment [paymentKey=1, progCd=null, paymentBegDt=null, paymentEndDt=null, createDt=null, userId=null, payAmt=0, processSw=null, caseNum=null, edgNum=null]
+2016-09-17 20:54:57,391 INFO  [mylog] No records found with key :1
+2016-09-17 20:54:57,391 INFO  [mylog] FsPayment [paymentKey=1, progCd=null, paymentBegDt=null, paymentEndDt=null, createDt=null, userId=null, payAmt=0, processSw=null, caseNum=null, edgNum=null]
+2016-09-17 20:57:55,225 ERROR [mylog] Exception:
+java.lang.NumberFormatException: For input string: "1.00"
+	at java.lang.NumberFormatException.forInputString(NumberFormatException.java:65)
+	at java.lang.Long.parseLong(Long.java:589)
+	at java.lang.Long.parseLong(Long.java:631)
+	at multi.thread.entity.FsPayment.setUserById(FsPayment.java:64)
+	at multi.thread.entity.FsPayment.<init>(FsPayment.java:47)
+	at multi.thread.entity.FsPayment.main(FsPayment.java:82)
+2016-09-17 20:58:51,720 INFO  [mylog] FsPayment [paymentKey=1, progCd=FS, paymentBegDt=, paymentEndDt=, createDt=, userId=, payAmt=1.0, processSw=N, caseNum=1, edgNum=1]

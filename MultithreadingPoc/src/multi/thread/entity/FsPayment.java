@@ -19,7 +19,7 @@ public class FsPayment extends Entity {
     private String paymentEndDt;
     private String createDt;
     private String userId;
-    private long payAmt;
+    private double payAmt;
     private String processSw;
     private String caseNum;
     private String edgNum;
@@ -27,7 +27,7 @@ public class FsPayment extends Entity {
    
 
     public FsPayment(BigInteger paymentKey, String progCd, String paymentBegDt, String paymentEndDt, String createDt,
-			String userId, long payAmt, String processSw, String caseNum, String edgNum) {
+			String userId, double payAmt, String processSw, String caseNum, String edgNum) {
 		super();
 		this.paymentKey = paymentKey;
 		this.progCd = progCd;
@@ -53,7 +53,7 @@ public class FsPayment extends Entity {
 	 * @throws SQLException
 	 */
     private void setUserById(long paymentKey) throws SQLException {
-        ResultSet resultSet = getResultSet("SELECT * FROM FS_Payment WHERE payment_Key = " + paymentKey);
+        ResultSet resultSet = getResultSet("SELECT * FROM Fs_Payment WHERE payment_Key = " + paymentKey);
         if(resultSet.next()) {
         	this.paymentKey = new BigInteger(resultSet.getString("payment_Key"));
         	progCd = resultSet.getString("prog_cd");
@@ -61,10 +61,12 @@ public class FsPayment extends Entity {
         	paymentEndDt = resultSet.getString("payment_end_dt");
             createDt = resultSet.getString("create_dt");
             userId = resultSet.getString("user_id");
-            payAmt = Long.parseLong(resultSet.getString("pay_amt"));
+            payAmt = Double.parseDouble(resultSet.getString("pay_amt"));
             processSw = resultSet.getString("process_sw");
             caseNum = resultSet.getString("case_num");
             edgNum = resultSet.getString("edg_num");
+        }else{
+        	ILog.iclog("No records found with key :"+paymentKey);
         }
     }
 
