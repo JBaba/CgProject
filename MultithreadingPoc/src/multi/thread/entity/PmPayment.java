@@ -8,11 +8,11 @@ import multi.thread.jdbc.Entity;
 import multi.thread.logs.ILog;
 
 /**
- * FsPayment entity for Tf_PAYMENT table
+ * PmPayment entity for PM_PAYMENT table
  * @author jbaba
  *
  */
-public class TfPayment extends Entity {
+public class PmPayment extends Entity {
     private BigInteger paymentKey;
     private String progCd;
     private String paymentBegDt;
@@ -26,7 +26,7 @@ public class TfPayment extends Entity {
 
    
 
-    public TfPayment(BigInteger paymentKey, String progCd, String paymentBegDt, String paymentEndDt, String createDt,
+    public PmPayment(BigInteger paymentKey, String progCd, String paymentBegDt, String paymentEndDt, String createDt,
 			String userId, double payAmt, String processSw, String caseNum, String edgNum) {
 		super();
 		this.paymentKey = paymentKey;
@@ -41,7 +41,7 @@ public class TfPayment extends Entity {
 		this.edgNum = edgNum;
 	}
 
-	public TfPayment(long paymentKey) throws SQLException {
+	public PmPayment(long paymentKey) throws SQLException {
         super();
         this.paymentKey = new BigInteger(paymentKey+"");
         setUserById(paymentKey);
@@ -53,7 +53,7 @@ public class TfPayment extends Entity {
 	 * @throws SQLException
 	 */
     private void setUserById(long paymentKey) throws SQLException {
-        ResultSet resultSet = getResultSet("SELECT * FROM Tf_Payment WHERE payment_Key = " + paymentKey);
+        ResultSet resultSet = getResultSet("SELECT * FROM Pm_Payment WHERE payment_Key = " + paymentKey);
         if(resultSet.next()) {
         	this.paymentKey = new BigInteger(resultSet.getString("payment_Key"));
         	progCd = resultSet.getString("prog_cd");
@@ -72,14 +72,14 @@ public class TfPayment extends Entity {
 
 	@Override
 	public String toString() {
-		return "TfPayment [paymentKey=" + paymentKey + ", progCd=" + progCd + ", paymentBegDt=" + paymentBegDt
+		return "PmPayment [paymentKey=" + paymentKey + ", progCd=" + progCd + ", paymentBegDt=" + paymentBegDt
 				+ ", paymentEndDt=" + paymentEndDt + ", createDt=" + createDt + ", userId=" + userId + ", payAmt="
 				+ payAmt + ", processSw=" + processSw + ", caseNum=" + caseNum + ", edgNum=" + edgNum + "]";
 	}
 	
 	public static void main(String[] args){
 		try{
-			TfPayment fs = new TfPayment(1);
+			PmPayment fs = new PmPayment(1);
 			ILog.iclog(fs.toString());
 		}catch(Exception e){
 			ILog.iclog(e);
