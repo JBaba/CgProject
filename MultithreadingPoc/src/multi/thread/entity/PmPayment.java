@@ -22,9 +22,7 @@ public class PmPayment extends Entity {
     private double payAmt;
     private String processSw;
     private String caseNum;
-    private String edgNum;
-
-   
+    private String edgNum;   
 
     public PmPayment(BigInteger paymentKey, String progCd, String paymentBegDt, String paymentEndDt, String createDt,
 			String userId, double payAmt, String processSw, String caseNum, String edgNum) {
@@ -68,6 +66,11 @@ public class PmPayment extends Entity {
         }else{
         	ILog.iclog("No records found with key :"+paymentKey);
         }
+    }
+    
+    public void getInsert(){
+        String sql = "INSERT INTO Pm_Payment VALUES (,"+progCd+","+paymentBegDt+","+paymentEndDt+","+createDt+","+userId+","+payAmt
+        		+ "," +processSw+ "," +caseNum + "," +edgNum +")";
     }
 
 	@Override
