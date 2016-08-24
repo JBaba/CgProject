@@ -11,6 +11,9 @@ public class Seq {
 	long pm = 2;
 	long tf = 2;
 	
+	private Seq() {
+	}
+	
 	/**
 	 * Seq for FS payments
 	 * @return
