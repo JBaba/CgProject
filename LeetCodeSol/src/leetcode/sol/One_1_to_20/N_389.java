@@ -20,6 +20,24 @@ public class N_389 {
 	 * @param t
 	 * @return
 	 */
+	public char findTheDifference_old(String s, String t) {
+		for (int i = 0; i < t.length(); i++) {
+			if(i>=s.length())
+				return t.charAt(i);
+			
+			if(s.charAt(i)!=t.charAt(i)){
+				return t.charAt(i);
+			}
+		}
+		return 0;
+    }
+	
+	/**
+	 * using Sum
+	 * @param s
+	 * @param t
+	 * @return
+	 */
 	public char findTheDifference(String s, String t) {
 		for (int i = 0; i < t.length(); i++) {
 			if(i>=s.length())
