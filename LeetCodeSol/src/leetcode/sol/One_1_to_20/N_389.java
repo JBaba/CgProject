@@ -39,15 +39,14 @@ public class N_389 {
 	 * @return
 	 */
 	public char findTheDifference(String s, String t) {
+		int sum = 0;
 		for (int i = 0; i < t.length(); i++) {
-			if(i>=s.length())
-				return t.charAt(i);
-			
-			if(s.charAt(i)!=t.charAt(i)){
-				return t.charAt(i);
-			}
+			sum += t.charAt(i);
 		}
-		return 0;
+		for (int i = 0; i < s.length(); i++) {
+			sum -= s.charAt(i);
+		}
+		return (char) sum;
     }
 	
 	public static void main(String[] args) {
