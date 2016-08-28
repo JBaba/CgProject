@@ -15,6 +15,7 @@ public class N_389 {
 
 	/**
 	 * adding past commit
+	 * add commit on sunday
 	 * @param s
 	 * @param t
 	 * @return
