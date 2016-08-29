@@ -13,6 +13,12 @@ package leetcode.sol.One_1_to_20;
  */
 public class N_389 {
 
+	/**
+	 * adding past commit
+	 * @param s
+	 * @param t
+	 * @return
+	 */
 	public char findTheDifference(String s, String t) {
 		for (int i = 0; i < t.length(); i++) {
 			if(i>=s.length())
