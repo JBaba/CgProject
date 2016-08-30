@@ -13,7 +13,10 @@ package leetcode.sol.One_1_to_20;
 public class N_389 {
 
 	public char findTheDifference(String s, String t) {
-		for (int i = 0; i < s.length(); i++) {
+		for (int i = 0; i < t.length(); i++) {
+			if(i>=s.length())
+				return t.charAt(i);
+			
 			if(s.charAt(i)!=t.charAt(i)){
 				return t.charAt(i);
 			}
@@ -23,7 +26,7 @@ public class N_389 {
 	
 	public static void main(String[] args) {
 		N_389 n =new N_389();
-		System.out.println(n.findTheDifference("abc", "atbc"));	
+		System.out.println(n.findTheDifference("abcd", "abcdt"));	
 	}
 
 }
