@@ -15,6 +15,22 @@ public class Seq {
 	}
 	
 	/**
+	 * Singleton of seq
+	 * @author jbaba
+	 *
+	 */
+	public enum ISeq{
+		Iseq;
+		private final Seq seq;
+		private ISeq() {
+			seq = new Seq();
+		}
+		public Seq getInstance(){
+			return seq;
+		}
+	}
+	
+	/**
 	 * Seq for FS payments
 	 * @return
 	 */

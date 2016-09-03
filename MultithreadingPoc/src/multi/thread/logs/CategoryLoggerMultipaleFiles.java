@@ -16,7 +16,7 @@ public class CategoryLoggerMultipaleFiles {
 	// Map of all category
 	HashMap<LogCategory, Category> myLogHashMap = new HashMap<LogCategory, Category>();
 	
-	public CategoryLoggerMultipaleFiles() {
+	private CategoryLoggerMultipaleFiles() {
 		JCategoryLogger jlog = new JCategoryLogger();
 		
 		// Init file keys for file adapter
