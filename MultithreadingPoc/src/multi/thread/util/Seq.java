@@ -7,9 +7,9 @@ package multi.thread.util;
  */
 public class Seq {
 
-	long fs = 2;
-	long pm = 2;
-	long tf = 2;
+	static long fs = 2;
+	static long pm = 2;
+	static long tf = 2;
 	
 	private Seq() {
 	}
@@ -52,5 +52,25 @@ public class Seq {
 	 */
 	public synchronized long nextTf(){
 		return tf++;
+	}
+	
+	@Override
+	public String toString() {
+		return "Seq [fs=" + fs + ", pm=" + pm + ", tf=" + tf + "]";
+	}
+
+	/**
+	 * Test of unique seq
+	 * @param args
+	 */
+	public static void main(String[] args){
+		test();
+	}
+	
+	/**
+	 * Test this
+	 */
+	public static void test(){
+		
 	}
 }
