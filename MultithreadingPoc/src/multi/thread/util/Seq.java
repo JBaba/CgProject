@@ -59,18 +59,4 @@ public class Seq {
 		return "Seq [fs=" + fs + ", pm=" + pm + ", tf=" + tf + "]";
 	}
 
-	/**
-	 * Test of unique seq
-	 * @param args
-	 */
-	public static void main(String[] args){
-		test();
-	}
-	
-	/**
-	 * Test this
-	 */
-	public static void test(){
-		
-	}
 }
