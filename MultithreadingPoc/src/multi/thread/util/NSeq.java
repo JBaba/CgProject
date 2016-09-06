@@ -1,5 +1,6 @@
 package multi.thread.util;
 
+import multi.thread.logs.ILog;
 import multi.thread.util.Seq.ISeq;
 
 /**
@@ -35,6 +36,10 @@ public class NSeq {
 		return seq.nextTf();
 	}
 	
+	public void print(){
+		ILog.iclog(seq.toString());
+	}
+	
 	/**
 	 * Test of unique seq
 	 * @param args
@@ -47,7 +52,47 @@ public class NSeq {
 	 * Test this
 	 */
 	public static void test(){
+		// 1st parallel run thread
+		Thread t1 = new Thread(new Runnable() {
+			NSeq seq = new NSeq();
+			@Override
+			public void run() {
+				seq.nextFs();
+				seq.print();
+			}
+		});
+		t1.start();
 		
+		// 1st parallel run thread
+		Thread t2 = new Thread(new Runnable() {
+			NSeq seq = new NSeq();
+			@Override
+			public void run() {
+				
+			}
+		});
+		t1.start();
+				
+		// 1st parallel run thread
+		Thread t3 = new Thread(new Runnable() {
+			NSeq seq = new NSeq();
+			@Override
+			public void run() {
+				
+			}
+		});
+		t1.start();
+
+		// 1st parallel run thread
+		Thread t4 = new Thread(new Runnable() {
+			NSeq seq = new NSeq();
+			@Override
+			public void run() {
+				
+			}
+		});
+		t1.start();
+			
 	}
 	
 }
