@@ -68,30 +68,33 @@ public class NSeq {
 			NSeq seq = new NSeq();
 			@Override
 			public void run() {
-				
+				seq.nextFs();
+				seq.print();
 			}
 		});
-		t1.start();
+		t2.start();
 				
 		// 1st parallel run thread
 		Thread t3 = new Thread(new Runnable() {
 			NSeq seq = new NSeq();
 			@Override
 			public void run() {
-				
+				seq.nextFs();
+				seq.print();
 			}
 		});
-		t1.start();
+		t3.start();
 
 		// 1st parallel run thread
 		Thread t4 = new Thread(new Runnable() {
 			NSeq seq = new NSeq();
 			@Override
 			public void run() {
-				
+				seq.nextFs();
+				seq.print();
 			}
 		});
-		t1.start();
+		t4.start();
 			
 	}
 	
