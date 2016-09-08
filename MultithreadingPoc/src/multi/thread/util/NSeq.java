@@ -57,8 +57,10 @@ public class NSeq {
 			NSeq seq = new NSeq();
 			@Override
 			public void run() {
-				seq.nextFs();
-				seq.print();
+				for (int i = 0; i < 20; i++) {
+					seq.nextFs();
+					seq.print();
+				}
 			}
 		});
 		t1.start();
@@ -79,8 +81,10 @@ public class NSeq {
 			NSeq seq = new NSeq();
 			@Override
 			public void run() {
-				seq.nextFs();
-				seq.print();
+				for (int i = 0; i < 20; i++) {
+					seq.nextFs();
+					seq.print();
+				}
 			}
 		});
 		t3.start();
