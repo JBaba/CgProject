@@ -6,6 +6,7 @@ import java.sql.SQLException;
 
 import multi.thread.jdbc.Entity;
 import multi.thread.logs.ILog;
+import multi.thread.util.NSeq;
 
 /**
  * PmPayment entity for PM_PAYMENT table
@@ -69,7 +70,7 @@ public class PmPayment extends Entity {
     }
     
     public void getInsert(){
-        String sql = "INSERT INTO Pm_Payment VALUES (,"+progCd+","+paymentBegDt+","+paymentEndDt+","+createDt+","+userId+","+payAmt
+        String sql = "INSERT INTO Pm_Payment VALUES ("+NSeq.nextPm()+","+progCd+","+paymentBegDt+","+paymentEndDt+","+createDt+","+userId+","+payAmt
         		+ "," +processSw+ "," +caseNum + "," +edgNum +")";
     }
 
