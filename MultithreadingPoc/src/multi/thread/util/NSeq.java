@@ -10,13 +10,13 @@ import multi.thread.util.Seq.ISeq;
  */
 public class NSeq {
 
-	Seq seq = ISeq.Iseq.getInstance();
+	static Seq seq = ISeq.Iseq.getInstance();
 	
 	/**
 	 * Seq for FS payments
 	 * @return
 	 */
-	public long nextFs(){
+	public static long nextFs(){
 		return seq.nextFs();
 	}
 	
@@ -24,7 +24,7 @@ public class NSeq {
 	 * Seq for PM payments
 	 * @return
 	 */
-	public long nextPm(){
+	public static long nextPm(){
 		return seq.nextPm();
 	}
 	
@@ -32,7 +32,7 @@ public class NSeq {
 	 * Seq for TF payments
 	 * @return
 	 */
-	public long nextTf(){
+	public static long nextTf(){
 		return seq.nextTf();
 	}
 	
