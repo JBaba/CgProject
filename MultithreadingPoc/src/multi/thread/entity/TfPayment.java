@@ -6,6 +6,7 @@ import java.sql.SQLException;
 
 import multi.thread.jdbc.Entity;
 import multi.thread.logs.ILog;
+import multi.thread.util.NSeq;
 
 /**
  * FsPayment entity for Tf_PAYMENT table
@@ -68,6 +69,11 @@ public class TfPayment extends Entity {
         }else{
         	ILog.iclog("No records found with key :"+paymentKey);
         }
+    }
+    
+    public void getInsert(){
+        String sql = "INSERT INTO Tf_Payment VALUES ("+NSeq.nextTf()+","+progCd+","+paymentBegDt+","+paymentEndDt+","+createDt+","+userId+","+payAmt
+        		+ "," +processSw+ "," +caseNum + "," +edgNum +")";
     }
 
 	@Override

@@ -72,7 +72,7 @@ public class FsPayment extends Entity {
     }
     
     public void getInsert(){
-        String sql = "INSERT INTO Pm_Payment VALUES ("+NSeq.nextFs()+","+progCd+","+paymentBegDt+","+paymentEndDt+","+createDt+","+userId+","+payAmt
+        String sql = "INSERT INTO Fs_Payment VALUES ("+NSeq.nextFs()+","+progCd+","+paymentBegDt+","+paymentEndDt+","+createDt+","+userId+","+payAmt
         		+ "," +processSw+ "," +caseNum + "," +edgNum +")";
     }
 
