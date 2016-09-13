@@ -15,15 +15,15 @@ import multi.thread.util.NSeq;
  */
 public class TfPayment extends Entity {
     private BigInteger paymentKey;
-    private String progCd;
-    private String paymentBegDt;
-    private String paymentEndDt;
-    private String createDt;
-    private String userId;
-    private double payAmt;
-    private String processSw;
-    private String caseNum;
-    private String edgNum;
+    private String progCd = null;
+    private String paymentBegDt = null;
+    private String paymentEndDt = null;
+    private String createDt = null;
+    private String userId = null;
+    private double payAmt = 0.0;
+    private String processSw = null;
+    private String caseNum = null;
+    private String edgNum = null;
 
    
 
@@ -88,6 +88,7 @@ public class TfPayment extends Entity {
 		try{
 			TfPayment fs = new TfPayment(1);
 			ILog.iclog(fs.toString());
+			ILog.iclog(fs.getInsert());
 		}catch(Exception e){
 			ILog.iclog(e);
 		}
