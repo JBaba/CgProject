@@ -72,8 +72,44 @@ public class TfPayment extends Entity {
     }
     
     public String getInsert(){
-        String sql = "INSERT INTO Tf_Payment VALUES ("+NSeq.nextTf()+","+progCd+","+paymentBegDt+","+paymentEndDt+","+createDt+","+userId+","+payAmt
-        		+ "," +processSw+ "," +caseNum + "," +edgNum +")";
+        String sql = "INSERT INTO Tf_Payment VALUES ("+NSeq.nextTf();
+        
+        if(progCd != null)
+        	sql+=",'"+progCd+"',";
+        else
+        	sql+=",NULL,";
+        
+        if(paymentBegDt != null)
+        	sql+="'"+paymentBegDt+"',";
+        else
+        	sql+="NULL,";
+        
+        if(paymentEndDt != null)
+        	sql+="'"+paymentEndDt+"',";
+        else
+        	sql+="NULL,";
+        
+        if(createDt != null)
+        	sql+="'"+createDt+"',";
+        else
+        	sql+="NULL,";
+        
+       	sql+="'"+payAmt+"',";
+        
+       	if(processSw != null)
+        	sql+="'"+processSw+"',";
+        else
+        	sql+="NULL,";
+       	
+       	if(caseNum != null)
+        	sql+="'"+caseNum+"',";
+        else
+        	sql+="NULL,";
+       	
+       	if(edgNum != null)
+        	sql+="'"+edgNum+"')";
+        else
+        	sql+="NULL)";
         return sql;
     }
 
