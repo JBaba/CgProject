@@ -71,6 +71,10 @@ public class TfPayment extends Entity {
         }
     }
     
+    /**
+     * Return sql insert query
+     * @return
+     */
     public String getInsert(){
         String sql = "INSERT INTO Tf_Payment VALUES ("+NSeq.nextTf();
         

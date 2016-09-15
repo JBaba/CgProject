@@ -71,6 +71,10 @@ public class FsPayment extends Entity {
         }
     }
     
+    /**
+     * Return sql insert query
+     * @return
+     */
     public String getInsert(){
         String sql = "INSERT INTO Fs_Payment VALUES ("+NSeq.nextFs();
         

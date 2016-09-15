@@ -69,6 +69,10 @@ public class PmPayment extends Entity {
         }
     }
     
+    /**
+     * Return sql insert query
+     * @return
+     */
     public String getInsert(){
         String sql = "INSERT INTO Pm_Payment VALUES ("+NSeq.nextPm();
         
