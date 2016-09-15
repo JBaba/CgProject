@@ -72,9 +72,46 @@ public class FsPayment extends Entity {
     }
     
     public String getInsert(){
-        String sql = "INSERT INTO Fs_Payment VALUES ("+NSeq.nextFs()+","+progCd+","+paymentBegDt+","+paymentEndDt+","+createDt+","+userId+","+payAmt
-        		+ "," +processSw+ "," +caseNum + "," +edgNum +")";
-        return sql;
+        String sql = "INSERT INTO Fs_Payment VALUES ("+NSeq.nextFs();
+        
+        if(progCd != null)
+        	sql+=",'"+progCd+"',";
+        else
+        	sql+=",NULL,";
+        
+        if(paymentBegDt != null)
+        	sql+="'"+paymentBegDt+"',";
+        else
+        	sql+="NULL,";
+        
+        if(paymentEndDt != null)
+        	sql+="'"+paymentEndDt+"',";
+        else
+        	sql+="NULL,";
+        
+        if(createDt != null)
+        	sql+="'"+createDt+"',";
+        else
+        	sql+="NULL,";
+        
+       	sql+="'"+payAmt+"',";
+        
+       	if(processSw != null)
+        	sql+="'"+processSw+"',";
+        else
+        	sql+="NULL,";
+       	
+       	if(caseNum != null)
+        	sql+="'"+caseNum+"',";
+        else
+        	sql+="NULL,";
+       	
+       	if(edgNum != null)
+        	sql+="'"+edgNum+"')";
+        else
+        	sql+="NULL)";
+       	
+       	return sql;
     }
 
 	@Override

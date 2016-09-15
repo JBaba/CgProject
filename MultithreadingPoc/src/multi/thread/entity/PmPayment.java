@@ -70,7 +70,7 @@ public class PmPayment extends Entity {
     }
     
     public String getInsert(){
-        String sql = "INSERT INTO Pm_Payment VALUES ("+NSeq.nextTf();
+        String sql = "INSERT INTO Pm_Payment VALUES ("+NSeq.nextPm();
         
         if(progCd != null)
         	sql+=",'"+progCd+"',";
@@ -108,7 +108,6 @@ public class PmPayment extends Entity {
         	sql+="'"+edgNum+"')";
         else
         	sql+="NULL)";
-        return sql;
         return sql;
     }
 
