@@ -5,6 +5,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+import multi.thread.entity.IEntity;
 import multi.thread.jdbc.Entity;
 
 /**
@@ -14,18 +15,26 @@ import multi.thread.jdbc.Entity;
  */
 public class Persister extends Entity{
 
-	@SuppressWarnings("rawtypes")
-	List entity = new ArrayList<>();
+	List<IEntity> entity = new ArrayList<>();
+	// all insert sqls
 	List<String> sqlInsert = new ArrayList<>();
 	
 	public Persister() {
 	}
 
-	@SuppressWarnings("unchecked")
-	public void add(Object obj){
+	/**
+	 * Add method to insert
+	 * @param obj
+	 */
+	public void add(IEntity obj){
 		entity.add(obj);
+		sqlInsert.add(obj.getInsert());
 	}
 	
+	/**
+	 * Insert all using batch commit
+	 * @throws Exception
+	 */
 	public void insert() throws Exception{
 		Connection connection = getConnection();
 		Statement statement = connection.createStatement();
