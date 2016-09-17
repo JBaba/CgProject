@@ -13,7 +13,7 @@ import multi.thread.util.NSeq;
  * @author jbaba
  *
  */
-public class TfPayment extends Entity {
+public class TfPayment extends Entity implements IEntity{
     private BigInteger paymentKey;
     private String progCd = null;
     private String paymentBegDt = null;

@@ -13,7 +13,7 @@ import multi.thread.util.NSeq;
  * @author jbaba
  *
  */
-public class FsPayment extends Entity {
+public class FsPayment extends Entity implements IEntity{
     private BigInteger paymentKey;
     private String progCd;
     private String paymentBegDt;
