@@ -134,11 +134,11 @@ public class FsPayment extends Entity {
 		this.userId = userId;
 	}
 
-	public long getPayAmt() {
+	public double getPayAmt() {
 		return payAmt;
 	}
 
-	public void setPayAmt(long payAmt) {
+	public void setPayAmt(double payAmt) {
 		this.payAmt = payAmt;
 	}
 
