@@ -7,6 +7,8 @@ import java.util.List;
 
 import multi.thread.entity.IEntity;
 import multi.thread.jdbc.Entity;
+import multi.thread.logs.CategoryLoggerMultipaleFiles.LogCategory;
+import multi.thread.logs.ILog;
 
 /**
  * 
@@ -36,15 +38,28 @@ public class Persister extends Entity{
 	 * @throws Exception
 	 */
 	public void insert() throws Exception{
-		Connection connection = getConnection();
-		Statement statement = connection.createStatement();
-
-		for (String query : sqlInsert) {
-			statement.addBatch(query);
+		
+		try{
+			ILog.iclog(LogCategory.BatchInsert, "Batch Insert started...");
+			Connection connection = getConnection();
+			Statement statement = connection.createStatement();
+			
+			ILog.iclog(LogCategory.BatchInsert, "Size:"+sqlInsert.size());
+			for (String query : sqlInsert) {
+				statement.addBatch(query);
+			}
+			
+			ILog.iclog(LogCategory.BatchInsert, "execute..");
+			statement.executeBatch();
+			statement.close();
+			connection.close();
+			
+			ILog.iclog(LogCategory.BatchInsert, "Done.");
+		}catch(Exception e){
+			ILog.iclog(LogCategory.BatchInsert, "Batch Insert exception :");
+			ILog.iclog(LogCategory.BatchInsert, e);
+			throw e;
 		}
-		statement.executeBatch();
-		statement.close();
-		connection.close(); 
 	}
 	
 }

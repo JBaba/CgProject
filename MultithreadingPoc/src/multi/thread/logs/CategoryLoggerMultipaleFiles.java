@@ -27,7 +27,7 @@ public class CategoryLoggerMultipaleFiles {
 		
 		// create category and store in map
 		myLogHashMap.put(LogCategory.mylog, Category.getInstance("mylog"));
-		myLogHashMap.put(LogCategory.HC, Category.getInstance("HC"));
+		myLogHashMap.put(LogCategory.BatchInsert, Category.getInstance("BatchInsert"));
 		myLogHashMap.put(LogCategory.MC, Category.getInstance("MC"));
 		myLogHashMap.put(LogCategory.DC, Category.getInstance("DC"));
 		
@@ -63,7 +63,7 @@ public class CategoryLoggerMultipaleFiles {
 	 *
 	 */
 	public enum LogCategory{
-		mylog,HC,MC,DC
+		mylog,BatchInsert,MC,DC
 	}
 	
 	/**

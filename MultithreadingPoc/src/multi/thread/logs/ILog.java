@@ -32,4 +32,20 @@ public class ILog {
 	public static void iclog(Exception e){
 		ilog.log(LogCategory.mylog, Priority.ERROR, e);
 	}
+	
+	/**
+	 * Method directly prints msg to consol and added to Category file.
+	 * @param msg
+	 */
+	public static void iclog(LogCategory c,String msg){
+		ilog.log(c, Priority.INFO, msg);
+	}
+	
+	/**
+	 * Method directly prints exception stack trace to Category and file
+	 * @param e
+	 */
+	public static void iclog(LogCategory c,Exception e){
+		ilog.log(c, Priority.ERROR, e);
+	}
 }
