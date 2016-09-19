@@ -34,6 +34,15 @@ public class Persister extends Entity{
 	}
 	
 	/**
+	 * Clear lists
+	 * @param obj
+	 */
+	public void clear(){
+		entity.clear();
+		sqlInsert.clear();
+	}
+	
+	/**
 	 * Insert all using batch commit
 	 * @throws Exception
 	 */
