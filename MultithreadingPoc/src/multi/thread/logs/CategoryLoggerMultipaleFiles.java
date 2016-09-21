@@ -21,7 +21,7 @@ public class CategoryLoggerMultipaleFiles {
 		
 		// Init file keys for file adapter
 		jlog.startFileLog("mylog");
-		jlog.startFileLog("HC");
+		jlog.startFileLog("BatchInsert");
 		jlog.startFileLog("MC");
 		jlog.startFileLog("DC");
 		

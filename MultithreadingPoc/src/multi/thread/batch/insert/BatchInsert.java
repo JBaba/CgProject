@@ -69,8 +69,8 @@ class FSInsertWorker extends Thread{
 		
 		fs.setProgCd("FS");
 		
-		double d = randCase.nextDouble();
-		fs.setPayAmt(d);
+		n = randCase.nextInt(250) + 1;
+		fs.setPayAmt(n);
 		
 		fs.setPaymentBegDt(Calendar.getInstance().getTime().toString());
 		fs.setPaymentEndDt(Calendar.getInstance().getTime().toString());
