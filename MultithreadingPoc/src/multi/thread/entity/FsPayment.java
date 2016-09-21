@@ -25,7 +25,8 @@ public class FsPayment extends Entity implements IEntity{
     private String caseNum;
     private String edgNum;
 
-   
+    public FsPayment() {
+	}
 
     public FsPayment(BigInteger paymentKey, String progCd, String paymentBegDt, String paymentEndDt, String createDt,
 			String userId, double payAmt, String processSw, String caseNum, String edgNum) {
