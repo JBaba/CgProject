@@ -99,6 +99,11 @@ public class FsPayment extends Entity implements IEntity{
         else
         	sql+="NULL,";
         
+        if(userId != null)
+        	sql+="'"+userId+"',";
+        else
+        	sql+="NULL,";
+        
        	sql+="'"+payAmt+"',";
         
        	if(processSw != null)
