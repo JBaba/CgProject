@@ -19,12 +19,13 @@ public class SeqDao extends Entity{
 	 * @param paymentKey
 	 * @throws SQLException
 	 */
-    private int setUserById(long paymentKey) throws SQLException {
-        ResultSet resultSet = getResultSet("select max(payment_key) as key from Fs_Payment");
+    public int getMaxKey(String tableName) throws SQLException {
+        ResultSet resultSet = getResultSet("select max(payment_key) as key from "+tableName);
         if(resultSet.next()) {
-        	
+        	String value = resultSet.getString("key");
+        	return Integer.parseInt(value);
         }else{
-        	ILog.iclog("No records found with key :"+paymentKey);
+        	ILog.iclog("No records found.");
         }
         return 0;
     }

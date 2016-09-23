@@ -1,5 +1,8 @@
 package multi.thread.util;
 
+import multi.thread.entity.persiter.SeqDao;
+import multi.thread.logs.ILog;
+
 /**
  * Seq for tables
  * @author jbaba
@@ -12,6 +15,11 @@ public class Seq {
 	static long tf = 2;
 	
 	private Seq() {
+		try {
+			fs = (new SeqDao()).getMaxKey("Fs_Payment");
+		} catch (Exception e) {
+			ILog.iclog(e);
+		}
 	}
 	
 	/**
