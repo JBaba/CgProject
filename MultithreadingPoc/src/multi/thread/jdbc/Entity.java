@@ -6,6 +6,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import multi.thread.logs.ILog;
+
 /**
  * Base class to get connection in project
  * @author jbaba
@@ -20,9 +22,21 @@ public class Entity {
         return conn;
     }
 
+    /**
+     * Default fetch value
+     * @param sql
+     * @return
+     * @throws SQLException
+     */
     protected ResultSet getResultSet(String sql) throws SQLException {
-        Connection conn = getConnection();
-        Statement st = conn.createStatement();
-        return st.executeQuery(sql);
+    	try{
+	    	ILog.iclog(sql);
+	        Connection conn = getConnection();
+	        Statement st = conn.createStatement();
+	        return st.executeQuery(sql);
+    	}catch(SQLException e){
+    		ILog.iclog(e);
+    		throw e;
+    	}
     }
 }
