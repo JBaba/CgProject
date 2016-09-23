@@ -17,6 +17,11 @@ public class Seq {
 	private Seq() {
 		try {
 			fs = (new SeqDao()).getMaxKey("Fs_Payment");
+			fs++;
+			pm = (new SeqDao()).getMaxKey("Pm_Payment");
+			pm++;
+			tf = (new SeqDao()).getMaxKey("Tf_Payment");
+			tf++;
 		} catch (Exception e) {
 			ILog.iclog(e);
 		}
