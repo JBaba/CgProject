@@ -20,15 +20,43 @@ public class BatchInsert {
 	}
 	
 	public void run() throws Exception{
-		CountDownLatch fsCountDown = new CountDownLatch(count);
-		FSInsertWorker fsInsert = new FSInsertWorker(count, fsCountDown);
-		fsInsert.start();
+		pRun();
+	}
+	
+	public void pRun(){
+		Thread t = new Thread(new Runnable() {
+			@Override
+			public void run() {
+				CountDownLatch fsCountDown = new CountDownLatch(1);
+				FSInsertWorker fsInsert = new FSInsertWorker(count, fsCountDown);
+				fsInsert.start();
+				
+				try {
+					fsCountDown.wait();
+					System.out.println("Prun Done");
+				} catch (InterruptedException e) {
+					ILog.iclog(e);
+				}
+				
+			}
+		});
+		t.start();
 	}
 	
 	public static void main(String[] args){
-		BatchInsert bi = new BatchInsert(10);
+		int count = 100;
+		BatchInsert bi = new BatchInsert(count);
+		BatchInsert bi1 = new BatchInsert(count);
+		BatchInsert bi2 = new BatchInsert(count);
+		BatchInsert bi3 = new BatchInsert(count);
+		BatchInsert bi4 = new BatchInsert(count);
+		ILog.iclog("Main Thread is done");
 		try{
 			bi.run();
+			bi1.run();
+			bi2.run();
+			bi3.run();
+			//bi4.run();*/
 		}catch(Exception e){
 			ILog.iclog(e);
 		}
@@ -81,10 +109,11 @@ class FSInsertWorker extends Thread{
 	@Override
 	public void run() {
 		Persister p = new Persister();
-		while (fsCountDown.getCount() != 0) {
+		int temp = 0;
+		while (size != temp) {
+			temp++;
 			FsPayment fs = initFs();
 			p.add(fs);
-			fsCountDown.countDown();
 		}
 		
 		try {
@@ -92,6 +121,7 @@ class FSInsertWorker extends Thread{
 		} catch (Exception e) {
 			ILog.iclog(e);
 		}
+		fsCountDown.countDown();
 	}
 	
 }

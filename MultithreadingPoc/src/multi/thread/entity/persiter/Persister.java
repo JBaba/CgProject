@@ -55,7 +55,7 @@ public class Persister extends Entity{
 			
 			ILog.iclog(LogCategory.BatchInsert, "Size:"+sqlInsert.size());
 			for (String query : sqlInsert) {
-				ILog.iclog(LogCategory.BatchInsert, query);
+				//ILog.iclog(LogCategory.BatchInsert, query);
 				statement.addBatch(query);
 			}
 			
