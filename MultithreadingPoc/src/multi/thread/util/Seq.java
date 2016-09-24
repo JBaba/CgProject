@@ -22,6 +22,8 @@ public class Seq {
 			pm++;
 			tf = (new SeqDao()).getMaxKey("Tf_Payment");
 			tf++;
+			String value = toString();
+			ILog.iclog(value);
 		} catch (Exception e) {
 			ILog.iclog(e);
 		}

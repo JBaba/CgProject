@@ -20,9 +20,9 @@ public class SeqDao extends Entity{
 	 * @throws SQLException
 	 */
     public int getMaxKey(String tableName) throws SQLException {
-        ResultSet resultSet = getResultSet("select max(payment_key) as key from "+tableName);
+        ResultSet resultSet = getResultSet("select max(payment_key) as k from "+tableName);
         if(resultSet.next()) {
-        	String value = resultSet.getString("key");
+        	String value = resultSet.getString("k");
         	return Integer.parseInt(value);
         }else{
         	ILog.iclog("No records found.");
