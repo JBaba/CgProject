@@ -10,6 +10,7 @@ import java.util.concurrent.CountDownLatch;
 
 import multi.thread.entity.FsPayment;
 import multi.thread.entity.persiter.Persister;
+import multi.thread.logs.CategoryLoggerMultipaleFiles.LogCategory;
 import multi.thread.logs.ILog;
 
 /**
@@ -57,12 +58,12 @@ public class BatchInsert {
 	 * @author jbaba
 	 *
 	 */
-	public void multipleRuns(int NoOfRuns){
+	public void multipleRuns(int NoOfRuns,int batch){
 		
 		Stack<BatchInsert> list = new Stack<>();
 		
-		for (int i = 0; i < 200; i++) {
-			list.add(new BatchInsert(NoOfRuns));
+		for (int i = 0; i < NoOfRuns; i++) {
+			list.add(new BatchInsert(batch));
 		}
 		
 		Thread t = new Thread(new Runnable() {
@@ -76,10 +77,10 @@ public class BatchInsert {
 					
 					CountDownLatch fsCountDown = new CountDownLatch(4);
 					
-					BatchInsert b1 = list.peek();
-					BatchInsert b2 = list.peek();
-					BatchInsert b3 = list.peek();
-					BatchInsert b4 = list.peek();
+					BatchInsert b1 = list.pop();
+					BatchInsert b2 = list.pop();
+					BatchInsert b3 = list.pop();
+					BatchInsert b4 = list.pop();
 					
 					b1.singleRun(fsCountDown);
 					b2.singleRun(fsCountDown);
@@ -91,22 +92,26 @@ public class BatchInsert {
 
 						long lEndTime = new Date().getTime(); // end time
 						long difference = lEndTime - lStartTime; // check different
-						ILog.iclog("Elapsed seconds: " + (difference/1000));
+						ILog.iclog(LogCategory.DC,"Elapsed seconds: " + (difference/1000));
 						
-						ILog.iclog("MultiPalse Run no: "+temp+" is done.");
+						ILog.iclog(LogCategory.DC,"Run no: "+temp+" is done.");
 						temp++;
 					} catch (InterruptedException e) {
 						ILog.iclog(e);
 					}
 				}
+				ILog.iclog(LogCategory.DC,"Multipale Run done.................");
 			}
 		});
 		t.start();
 	}
 	
 	public static void main(String[] args){
+		int num = 320;
 		BatchInsert bi = new BatchInsert();
-		bi.multipleRuns(16);
+		bi.multipleRuns(num,50);
+		BatchInsert b2 = new BatchInsert();
+		b2.multipleRuns(num,50);
 	}
 }
 
