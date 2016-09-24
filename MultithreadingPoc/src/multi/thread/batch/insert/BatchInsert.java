@@ -1,7 +1,11 @@
 package multi.thread.batch.insert;
 
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
+import java.util.List;
 import java.util.Random;
+import java.util.Stack;
 import java.util.concurrent.CountDownLatch;
 
 import multi.thread.entity.FsPayment;
@@ -19,21 +23,26 @@ public class BatchInsert {
 		this.count = count;
 	}
 	
-	public void run() throws Exception{
-		pRun();
+	public BatchInsert() {
 	}
 	
-	public void pRun(){
+	public void run() throws Exception{
+		singleRun(null);
+	}
+	
+	public void singleRun(CountDownLatch countDown){
 		Thread t = new Thread(new Runnable() {
 			@Override
 			public void run() {
 				CountDownLatch fsCountDown = new CountDownLatch(1);
 				FSInsertWorker fsInsert = new FSInsertWorker(count, fsCountDown);
 				fsInsert.start();
-				
 				try {
-					fsCountDown.wait();
-					System.out.println("Prun Done");
+					fsCountDown.await();
+					// only if its not null
+					if(countDown!=null){
+						countDown.countDown();
+					}
 				} catch (InterruptedException e) {
 					ILog.iclog(e);
 				}
@@ -43,23 +52,61 @@ public class BatchInsert {
 		t.start();
 	}
 	
-	public static void main(String[] args){
-		int count = 100;
-		BatchInsert bi = new BatchInsert(count);
-		BatchInsert bi1 = new BatchInsert(count);
-		BatchInsert bi2 = new BatchInsert(count);
-		BatchInsert bi3 = new BatchInsert(count);
-		BatchInsert bi4 = new BatchInsert(count);
-		ILog.iclog("Main Thread is done");
-		try{
-			bi.run();
-			bi1.run();
-			bi2.run();
-			bi3.run();
-			//bi4.run();*/
-		}catch(Exception e){
-			ILog.iclog(e);
+	/**
+	 * Run Multiple at a time
+	 * @author jbaba
+	 *
+	 */
+	public void multipleRuns(int NoOfRuns){
+		
+		Stack<BatchInsert> list = new Stack<>();
+		
+		for (int i = 0; i < 200; i++) {
+			list.add(new BatchInsert(NoOfRuns));
 		}
+		
+		Thread t = new Thread(new Runnable() {
+			@Override
+			public void run() {
+				int temp = 1;   
+				// run in pair of 4 till list becomes empty
+				while (!list.isEmpty()) {
+					
+					long lStartTime = new Date().getTime();  // start time
+					
+					CountDownLatch fsCountDown = new CountDownLatch(4);
+					
+					BatchInsert b1 = list.peek();
+					BatchInsert b2 = list.peek();
+					BatchInsert b3 = list.peek();
+					BatchInsert b4 = list.peek();
+					
+					b1.singleRun(fsCountDown);
+					b2.singleRun(fsCountDown);
+					b3.singleRun(fsCountDown);
+					b4.singleRun(fsCountDown);
+					
+					try {
+						fsCountDown.await();
+
+						long lEndTime = new Date().getTime(); // end time
+						long difference = lEndTime - lStartTime; // check different
+						ILog.iclog("Elapsed seconds: " + (difference/1000));
+						
+						ILog.iclog("MultiPalse Run no: "+temp+" is done.");
+						temp++;
+					} catch (InterruptedException e) {
+						ILog.iclog(e);
+					}
+				}
+			}
+		});
+		t.start();
+	}
+	
+	public static void main(String[] args){
+		BatchInsert bi = new BatchInsert();
+		bi.multipleRuns(16);
 	}
 }
 
