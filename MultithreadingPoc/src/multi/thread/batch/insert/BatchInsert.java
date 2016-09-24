@@ -1,9 +1,7 @@
 package multi.thread.batch.insert;
 
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.List;
 import java.util.Random;
 import java.util.Stack;
 import java.util.concurrent.CountDownLatch;
