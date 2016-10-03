@@ -60,7 +60,10 @@ public class N_25 {
 			reverseLast.next = temp;
 		}	
 		
-		return reverse.next;
+		if(index == k)
+			return reverse.next;
+		else
+			return head;
     }
 	
 	public static void main(String[] args) {
