@@ -38,6 +38,27 @@ public class N_25 {
 	 */
 	public ListNode reverseKGroup(ListNode head, int k) {
 		ListNode reverse = new ListNode(0);
+		ListNode reverseLast = null; 
+		int index = 0;
+		ListNode temp = null;
+		temp = head;
+		
+		while(temp != null && index != k){
+			ListNode item = new ListNode(temp.val);
+			
+			if(reverse.next == null){
+				reverse.next = item;
+				reverseLast = item;
+			}else{
+				ListNode next = reverse.next;
+				reverse.next = item;
+				item.next = next;
+			}
+			
+			index++;
+			temp = temp.next;
+			reverseLast.next = temp;
+		}	
 		
 		return reverse.next;
     }
@@ -52,7 +73,11 @@ public class N_25 {
 		
 		N_25 n = new N_25();
 		
+		System.out.println("-----------------");
+		
 		System.out.println(n.reverseKGroup(l1, 3));
+		System.out.println(n.reverseKGroup(l1, 1));
+		System.out.println(n.reverseKGroup(l1, 7));
 	}
 
 }
