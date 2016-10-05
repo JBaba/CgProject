@@ -28,15 +28,34 @@ public class N_61 {
 	 * @return
 	 */
 	public ListNode rotateRight(ListNode head, int k) {
-		ListNode reverse = new ListNode(0);
+		ListNode rotate = new ListNode(0);
+		ListNode firstItem = head;
+		ListNode lastNodeFirstItem = firstItem;
+		ListNode secondPointer = head;
+		ListNode firstPointer = head;
+		int index = 0;
 		
 		
-		return reverse.next;
+		while (firstPointer.next != null) {
+			if(index == k){
+				secondPointer = secondPointer.next;
+			}
+			else{
+				firstPointer = firstPointer.next;
+			}
+			index++;
+		}
+		
+		System.out.println(firstItem);
+		System.out.println(firstPointer);
+		System.out.println(secondPointer);
+		
+		return rotate.next;
     }
 	
 	public static void main(String[] args) {
 		Two t = new Two();
-		ListNode l1 = t.init("112456");
+		ListNode l1 = t.init("124567");
 		System.out.println(l1);
 		
 		ListNode l2 = t.init("35678");
@@ -46,9 +65,9 @@ public class N_61 {
 		
 		System.out.println("-----------------");
 		
-		System.out.println(n.rotateRight(l1, 3));
-		System.out.println(n.rotateRight(l1, 1));
-		System.out.println(n.rotateRight(l1, 7));
+		System.out.println(n.rotateRight(l1, 2));
+		//System.out.println(n.rotateRight(l1, 1));
+		//System.out.println(n.rotateRight(l1, 7));
 	}
 
 }
