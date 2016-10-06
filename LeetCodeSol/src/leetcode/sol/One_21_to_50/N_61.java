@@ -46,10 +46,13 @@ public class N_61 {
 				index++;
 		}
 		
-		rotate.next = secondPointer.next;
-		firstPointer.next = firstItem;
-		secondPointer.next = null;
-		
+		if(index != k){
+			rotate.next = head;
+		}else{
+			rotate.next = secondPointer.next;
+			firstPointer.next = firstItem;
+			secondPointer.next = null;
+		}
 		return rotate.next;
     }
 	
@@ -65,7 +68,7 @@ public class N_61 {
 		
 		System.out.println("-----------------");
 		
-		System.out.println(n.rotateRight(l1, 1));
+		/*System.out.println(n.rotateRight(l1, 1));
 		
 		l1 = t.init("1234567");
 		System.out.println(n.rotateRight(l1, 2));
@@ -80,7 +83,7 @@ public class N_61 {
 		System.out.println(n.rotateRight(l1, 5));
 		
 		l1 = t.init("1234567");
-		System.out.println(n.rotateRight(l1, 6));
+		System.out.println(n.rotateRight(l1, 6));*/
 		
 		l1 = t.init("1234567");
 		System.out.println(n.rotateRight(l1, 7));
