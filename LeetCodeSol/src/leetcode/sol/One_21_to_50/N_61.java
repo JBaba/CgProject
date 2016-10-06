@@ -35,7 +35,7 @@ public class N_61 {
 		int index = 0;
 		
 		
-		while (firstPointer.next != null) {
+		while (firstPointer.next != null  && firstPointer!=null) {
 			if(index == k){
 				secondPointer = secondPointer.next;
 			}
