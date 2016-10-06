@@ -35,7 +35,7 @@ public class N_61 {
 		int index = 0;
 		
 		
-		while (firstPointer.next != null  && firstPointer!=null) {
+		while (firstPointer!=null && firstPointer.next != null ) {
 			if(index == k){
 				secondPointer = secondPointer.next;
 			}
@@ -46,7 +46,7 @@ public class N_61 {
 				index++;
 		}
 		
-		if(index != k){
+		if(index != k || k==0){
 			rotate.next = head;
 		}else{
 			rotate.next = secondPointer.next;
