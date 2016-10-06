@@ -30,7 +30,6 @@ public class N_61 {
 	public ListNode rotateRight(ListNode head, int k) {
 		ListNode rotate = new ListNode(0);
 		ListNode firstItem = head;
-		ListNode lastNodeFirstItem = firstItem;
 		ListNode secondPointer = head;
 		ListNode firstPointer = head;
 		int index = 0;
@@ -40,22 +39,23 @@ public class N_61 {
 			if(index == k){
 				secondPointer = secondPointer.next;
 			}
-			else{
-				firstPointer = firstPointer.next;
-			}
-			index++;
+
+			firstPointer = firstPointer.next;
+			
+			if(index != k)
+				index++;
 		}
 		
-		System.out.println(firstItem);
-		System.out.println(firstPointer);
-		System.out.println(secondPointer);
+		rotate.next = secondPointer.next;
+		firstPointer.next = firstItem;
+		secondPointer.next = null;
 		
 		return rotate.next;
     }
 	
 	public static void main(String[] args) {
 		Two t = new Two();
-		ListNode l1 = t.init("124567");
+		ListNode l1 = t.init("1234567");
 		System.out.println(l1);
 		
 		ListNode l2 = t.init("35678");
@@ -65,9 +65,25 @@ public class N_61 {
 		
 		System.out.println("-----------------");
 		
+		System.out.println(n.rotateRight(l1, 1));
+		
+		l1 = t.init("1234567");
 		System.out.println(n.rotateRight(l1, 2));
-		//System.out.println(n.rotateRight(l1, 1));
-		//System.out.println(n.rotateRight(l1, 7));
+		
+		l1 = t.init("1234567");
+		System.out.println(n.rotateRight(l1, 3));
+		
+		l1 = t.init("1234567");
+		System.out.println(n.rotateRight(l1, 4));
+		
+		l1 = t.init("1234567");
+		System.out.println(n.rotateRight(l1, 5));
+		
+		l1 = t.init("1234567");
+		System.out.println(n.rotateRight(l1, 6));
+		
+		l1 = t.init("1234567");
+		System.out.println(n.rotateRight(l1, 7));
 	}
 
 }
