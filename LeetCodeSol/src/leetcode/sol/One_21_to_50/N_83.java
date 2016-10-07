@@ -29,7 +29,22 @@ public class N_83 {
 	 */
 	public ListNode deleteDuplicates(ListNode head) {
 		ListNode rotate = new ListNode(0);
-
+		ListNode next = rotate;
+		ListNode temp = head;
+		Integer prevValue = null;
+		
+		while (temp != null) {
+			Integer val = temp.val;
+			if(prevValue == null || prevValue.intValue() != val.intValue()){
+				ListNode node = new ListNode(temp.val);
+				next.next = node;
+				next = next.next;
+				prevValue = temp.val;
+			}
+			
+			temp = temp.next;
+		}
+		
 		return rotate.next;
     }
 	
@@ -38,7 +53,7 @@ public class N_83 {
 		ListNode l1 = t.init("115667");
 		System.out.println(l1);
 		
-		ListNode l2 = t.init("112");
+		ListNode l2 = t.init("11222");
 		System.out.println(l2);
 		
 		N_83 n = new N_83();
