@@ -38,10 +38,16 @@ public class N_82 {
 			Integer val = temp.val;
 			if(prevValue1 == null || prevValue1.intValue() != val.intValue()){
 				if(prevValue2 == null || prevValue1.intValue() != prevValue2.intValue()){
-					ListNode node = new ListNode(temp.val);
-					next.next = node;
-					next = next.next;
-					prevValue1 = temp.val;
+					if(prevValue1 != null && prevValue2 != null && prevValue1.intValue() == prevValue2.intValue()){
+						ListNode node = new ListNode(temp.val);
+						next = node;
+						prevValue1 = temp.val;
+					}else{
+						ListNode node = new ListNode(temp.val);
+						next.next = node;
+						next = next.next;
+						prevValue1 = temp.val;
+					}
 				}else{
 					prevValue2 = temp.val;
 				}
