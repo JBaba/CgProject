@@ -31,15 +31,20 @@ public class N_82 {
 		ListNode rotate = new ListNode(0);
 		ListNode next = rotate;
 		ListNode temp = head;
-		Integer prevValue = null;
+		Integer prevValue1 = null;
+		Integer prevValue2 = null;
 		
 		while (temp != null) {
 			Integer val = temp.val;
-			if(prevValue == null || prevValue.intValue() != val.intValue()){
-				ListNode node = new ListNode(temp.val);
-				next.next = node;
-				next = next.next;
-				prevValue = temp.val;
+			if(prevValue1 == null || prevValue1.intValue() != val.intValue()){
+				if(prevValue2 == null || prevValue1.intValue() != prevValue2.intValue()){
+					ListNode node = new ListNode(temp.val);
+					next.next = node;
+					next = next.next;
+					prevValue1 = temp.val;
+				}else{
+					prevValue2 = temp.val;
+				}
 			}
 			
 			temp = temp.next;
