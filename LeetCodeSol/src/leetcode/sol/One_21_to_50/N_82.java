@@ -40,13 +40,15 @@ public class N_82 {
 			if(prevValue1 == null || prevValue1.intValue() != val.intValue()){
 				if(prevValue2 == null || prevValue1.intValue() != prevValue2.intValue()){
 					ListNode node = new ListNode(temp.val);
+					prev = next;
 					next.next = node;
 					next = next.next;
 					prevValue1 = temp.val;
 				}else{
-					if(prevValue1 != null && prevValue2 != null && prevValue1.intValue() == prevValue2.intValue()){
+					if(prevValue1 != null && prevValue2 != null && prevValue1.intValue() == prevValue2.intValue() && prevValue1.intValue() != temp.val){
 						ListNode node = new ListNode(temp.val);
-						next = node;
+						prev.next = node;
+						next = prev.next;
 						prevValue1 = temp.val;
 					}
 					prevValue1 = temp.val;
@@ -56,6 +58,10 @@ public class N_82 {
 			}
 			
 			temp = temp.next;
+		}
+		
+		if(prevValue1 != null && prevValue2 != null && prevValue1.intValue()==prevValue2.intValue()){
+			prev.next = null;
 		}
 		
 		return rotate.next;
