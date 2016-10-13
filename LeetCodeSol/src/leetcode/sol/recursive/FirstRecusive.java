@@ -7,17 +7,29 @@ package leetcode.sol.recursive;
  */
 public class FirstRecusive {
 
+	public FirstRecusive() {
+	}
+	
 	/**
 	 * Fibonacci rec solution
 	 * @param n
 	 * @return
 	 */
 	public static int fib(int n){
-		return (n<=1)?n:(n-1)+(n-2);
+		return (n<=1)?n:fib(n-1)+fib(n-2);
+	}
+	
+	public static int printFib(int n){
+		if(n<=1){
+			return n;
+		}else{
+			return printFib(n-1)+printFib(n-2);
+		}
 	}
 	
 	public static void main(String[] args) {
-
+		System.out.println(fib(3));
+		System.out.println(printFib(7));
 	}
 
 }
