@@ -27,9 +27,37 @@ public class FirstRecusive {
 		}
 	}
 	
+	/**
+	 * factorial rec solution
+	 * @param n
+	 * @return
+	 */
+	public static int fact(int n){
+		return (n==1)?n:n*fact(n-1);
+	}
+	
+	/**
+	 * GCD rec solution
+	 * @param n
+	 * @return
+	 */
+	public static int GCD(int x,int y){		
+		int d = (x<y)?x:y;
+		return findGCD(x,y,d);
+	}
+	
+	private static int findGCD(int x, int y, int d) {
+		if(x%d == 0 && y%d == 0)
+			return d;
+		else
+			return findGCD(x, y, d-1);
+	}
+
 	public static void main(String[] args) {
 		System.out.println(fib(3));
 		System.out.println(printFib(7));
+		System.out.println(fact(4));
+		System.out.println(GCD(15,12));
 	}
 
 }
