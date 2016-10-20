@@ -100,6 +100,7 @@ public class FirstRecusive {
 		System.out.println(fact(4));
 		System.out.println(GCD(15,12));
 		pascalAlgo(4,0,0);
+		
 	}
 
 }
