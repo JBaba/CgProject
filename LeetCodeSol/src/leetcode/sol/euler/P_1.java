@@ -2,9 +2,17 @@ package leetcode.sol.euler;
 
 public class P_1 {
 
+	int target = 999;
+	
 	public P_1() {
 		run(10,3,5);
 		run(1000,3,5);
+		System.out.println(SumDividibleBy(3)+SumDividibleBy(5)-SumDividibleBy(15));
+	}
+	
+	private int SumDividibleBy(int n){
+		int p = target/n;
+		return (n*(p*(p+1))) / 2;
 	}
 	
 	private void run(int number, int num1, int num2) {
