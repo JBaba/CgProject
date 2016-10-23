@@ -1,5 +1,6 @@
 package leetcode.sol.extra;
 
+import java.util.AbstractMap;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
@@ -12,16 +13,18 @@ public class MatrixExit {
 	int coulmns = 4 ;
 	int totalNode = rows * coulmns;
 	int exitRow = 1;
-	int exitColumn = 1;
-	int[][] maze = {{0,0,0,0},
+	int exitColumn = 3;
+	int[][] maze = {{0,0,0,1},
 			        {0,0,1,0},
-			        {0,0,1,0},
+			        {0,1,1,0},
 			        {0,0,0,0}};
 	List<Integer> stepsList = new LinkedList<>();
 	
 	public MatrixExit() {
 		//sol();
-		goRight(0, "", 0, 0);
+		//goRight(0, "", 0, 0);
+		mazeUtil(maze, 0, 0,0);
+		print(maze);
 		System.out.println(stepsList);
 	}
 	
@@ -46,6 +49,14 @@ public class MatrixExit {
 						return -1;
 					}
 				}
+				if(visitedNodes.size() == totalNode){
+					return -1;
+				}
+				if(canRight(i,j)){
+					visitedNodes.add(i+""+j);
+					statusTraversal.add(new AbstractMap.SimpleEntry<Integer, Integer>(i, j));
+				}
+					
 			}
 		}
 		
@@ -91,6 +102,52 @@ public class MatrixExit {
 
 	private boolean canRight(int i, int j) {
 		return ((j+1)>=(coulmns))?false:(maze[i][j+1]==0)?true:false;
+	}
+	
+	 private boolean mazeUtil(int[][] maze, int i, int j,int step) {
+        if(!isSafe(maze, i, j)){     
+        	return false;
+        }
+        if(isGoal(maze, i, j)){
+        	++step;
+        	System.out.println(i+":"+j+"-"+step);
+        	return true;
+        }
+       
+        else {
+            maze[i][j] = 2;                             // traversing path
+            ++step;
+            if(mazeUtil(maze, i, j+1,step))  return true;    // right
+            if(mazeUtil(maze, i+1, j,step))  return true;    // down
+            if(mazeUtil(maze, i-1, j,step))  return true;    // up
+            if(mazeUtil(maze, i, j-1,step))  return true;    // left
+            
+            maze[i][j] = 3;                             // traversed dead ends
+        }
+        return false;
+	 }
+
+	private boolean isGoal(int[][] maze2, int i, int j) {
+		return isExit(i, j);
+	}
+
+	private boolean isSafe(int[][] maze, int i, int j) {
+		try {
+			if(maze[i][j] == 1 || maze[i][j] == 2)   return false;
+	        else  return true;
+		}catch(ArrayIndexOutOfBoundsException e){
+			return false;
+		}
+	}
+	
+	public static void print(int[][]maze) {
+        System.out.println("\n=============\n");
+        for(int i = 0; i < maze.length; i++) {
+            for(int j = 0; j < maze[i].length; j++) {
+                System.out.print(maze[i][j] == '-' ? '.' : maze[i][j]);
+            }
+            System.out.println();
+        }
 	}
 
 	public static void main(String[] args) {
