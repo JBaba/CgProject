@@ -23,29 +23,39 @@ public class N_74 {
 	public N_74() {
 		
 		int[][] maze = new int[8][];
+		int number = 10000000;
 		
 		for(int i = 0;i<maze.length;i++){
 			if(i!=5){
 				maze[i] = new int[10];
 				for (int j = 0; j < 10; j++) {
-					maze[i][j] = ((i*100000)+j);
+					maze[i][j] = ((i*number)+j);
 				}
 			}
 			else {
-				maze[i] = new int[100000];
-				for (int j = 0; j < 100000; j++) {
-					maze[i][j] = ((i*100000)+j);
+				maze[i] = new int[number];
+				for (int j = 0; j < number; j++) {
+					maze[i][j] = ((i*number)+j);
 				}
 			}
 		}
 		
-		int target = 599999;
+		int target = (number*6) -1;
 		
 		long start = System.currentTimeMillis();
+		
+		start = System.currentTimeMillis();
+		start = System.currentTimeMillis();
+		start = System.currentTimeMillis();
+		start = System.currentTimeMillis();
+		
+		
 		searchMatrix(maze,target );
 		long end =  System.currentTimeMillis();
 		System.out.println((end-start));
 	
+		System.out.println("------------------");
+		
 		start = System.currentTimeMillis();
 		searchMatrixWithRec(maze, target, 0);
 		end =  System.currentTimeMillis();
@@ -72,20 +82,61 @@ public class N_74 {
 	}
 
 	public boolean searchMatrix(int[][] matrix, int target) {
-        
 		for (int i = 0; i < matrix.length; i++) {
 			if(matrix[i][0] <= target && matrix[i][matrix[i].length-1] >= target){
-				for (int j = 0; j < matrix[i].length; j++) {
-					if(matrix[i][j] == target){
-						System.out.println(i+" "+j);
-						return true;
-					}
-				}
+				//simple loop
+				//return searchUsingLoop(matrix,target,i);
+				
+				//binary search
+				System.out.println(i+" ");
+				return binarySearch(matrix[i],target);
+			}
+		}
+		return false;
+    }
+
+	/**
+	 * 
+	 *  1 2 3 4 5 6 7
+	 * 
+	 * @param arry
+	 * @param target
+	 * @return
+	 */
+	private boolean binarySearch(int[] arry, int target) {
+		
+		int mid = arry.length/2;
+		int start = 0;
+		int end = arry.length-1;
+		
+		while (start != end) {
+			if(target > arry[mid]){
+				start = mid;
+				mid = (end-start)/2;
+				mid = start + mid + 1;
+			}else if(target < arry[mid]){
+				end = mid;
+				mid = (end-start)/2;
+				mid = start + mid + 1;
+			}else if(target == arry[mid]){
+				System.out.println(mid);
+				return true;
 			}
 		}
 		
 		return false;
-    }
+	}
+
+	private boolean searchUsingLoop(int[][] matrix, int target, int i) {
+		// use binary search here
+		for (int j = 0; j < matrix[i].length; j++) {
+			if(matrix[i][j] == target){
+				System.out.println(i+" "+j);
+				return true;
+			}
+		}
+		return false;
+	}
 
 	public static void main(String[] args){
 		N_74 n=new N_74();
