@@ -2,9 +2,9 @@ package leetcode.sol.extra;
 
 public class Queue {
 	
-	int[] arry;
-	int front = -1;
-	int end = -1;
+	private final int[] arry;
+	private int front = -1;
+	private int end = -1;
 
 	public Queue(int size) {
 		arry = new int[size];
