@@ -63,7 +63,7 @@ public class HashLinerProb {
 		h.put(30, 32);
 		h.print();
 		h.remove(20);
-		h.print();
+		
 	}
 
 	class element{
