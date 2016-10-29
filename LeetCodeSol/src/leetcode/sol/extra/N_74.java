@@ -105,19 +105,20 @@ public class N_74 {
 	 */
 	private boolean binarySearch(int[] arry, int target) {
 		
-		int mid = arry.length/2;
+		//int mid = arry.length/2;
 		int start = 0;
 		int end = arry.length-1;
 		
-		while (start != end) {
+		while (start <= end) {
+			int mid = start + (end - start) / 2;
 			if(target > arry[mid]){
-				start = mid;
-				mid = (end-start)/2;
-				mid = start + mid + 1;
+				start = mid+1;
+				//mid = (end-start)/2;
+				//mid = start + mid + 1;
 			}else if(target < arry[mid]){
-				end = mid;
-				mid = (end-start)/2;
-				mid = start + mid + 1;
+				end = mid-1;
+				//mid = (end-start)/2;
+				//mid = start + mid + 1;
 			}else if(target == arry[mid]){
 				System.out.println(mid);
 				return true;

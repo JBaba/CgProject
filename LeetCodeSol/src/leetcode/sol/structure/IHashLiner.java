@@ -1,4 +1,4 @@
-package leetcode.sol.extra;
+package leetcode.sol.structure;
 
 import java.util.*;
 
@@ -84,6 +84,7 @@ public class IHashLiner<k,v> {
 		if(head.key.equals(k)){
 			v val = head.val;
 			list.set(hash(k), head.next);
+			--size;
 			return val;
 		}
 		
@@ -93,6 +94,7 @@ public class IHashLiner<k,v> {
 		while (head != null) {
 			if(head.key.equals(k)){
 				prev.next = head.next;
+				--size;
 				return head.val;
 			}
 			prev = head;
@@ -112,7 +114,7 @@ public class IHashLiner<k,v> {
 		h.print();
 		h.put(40, 33);
 		h.print();
-		h.remove(30);
+		h.remove(33);
 		h.print();
 	}
 

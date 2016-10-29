@@ -1,4 +1,4 @@
-package leetcode.sol.extra;
+package leetcode.sol.structure;
 
 public class Queue_2 {
 	
