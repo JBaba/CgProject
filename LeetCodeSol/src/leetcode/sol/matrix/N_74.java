@@ -19,30 +19,27 @@ package leetcode.sol.matrix;
  * @author nviradia
  *
  */
-public class N_75 {
+public class N_74 {
 	
-	public int[][] matrix = {{-1},{-1}};
-		
-		
-	/**	{
+	public int[][] matrix = {
 			  {1,   4,  7, 11, 15},
 			  {2,   5,  8, 12, 19},
 			  {3,   6,  9, 16, 22},
 			  {10, 13, 14, 17, 24},
 			  {18, 21, 23, 26, 30}
 		};
-	**/
+	
 	public int[] arry = {1,2,3,4,5,6,7,8,9,10};
 	
-	public N_75() {
-		binarySearch(arry, -1);
+	public N_74() {
+		binarySearch(arry, 11);
 		solv(16);
 	}
 	
 	public void solv(int target){
 		for(int i = 0;i<matrix.length;i++){
 			boolean flag = false;
-			if(matrix[i][0] <= target && matrix[i][matrix[i].length-1] >= target){
+			if(matrix[i][0] <= target && matrix[i][matrix.length-1] >= target){
 				System.out.print(i+" ");
 				flag = binarySearch(matrix[i], target);
 			}
@@ -82,7 +79,7 @@ public class N_75 {
 
 
 	public static void main(String[] args){
-		N_75 n=new N_75();
+		N_74 n=new N_74();
 		System.out.println("Done...");
 	}
 	
