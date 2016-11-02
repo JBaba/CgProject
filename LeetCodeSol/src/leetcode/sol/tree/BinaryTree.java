@@ -38,24 +38,55 @@ public class BinaryTree {
 		if(root.val == 0){
 			return;
 		}
-		preOrder(root.left, result);
+		inOrder(root.left, result);
 		if(root.val != 0){
 			result.add(root.val);
 		}
-		preOrder(root.right, result);
+		inOrder(root.right, result);
 	}
 	
 	public void postOrder(Node root,List<Integer> result){
 		if(root.val == 0){
 			return;
 		}
-		preOrder(root.left, result);
-		preOrder(root.right, result);
+		postOrder(root.left, result);
+		postOrder(root.right, result);
 		if(root.val != 0){
 			result.add(root.val);
 		}
 	}
 	
+	public void delete(int val){
+		
+		if(root == null)
+			return;
+		
+		Node deleteNode = findNode(val,root);
+		
+		if(deleteNode == null)
+			return;
+		
+		deleteAndBalanceTree(deleteNode);
+	}
+	
+	private void deleteAndBalanceTree(Node deleteNode) {
+		if(deleteNode.right.val != 0)
+			deleteNode.val = deleteNode.right.val;
+			
+	}
+
+	private Node findNode(int val, Node root) {
+		if(root.val == val)
+			return root;
+		
+		if(root.val >= val)
+			findNode(val, root.left);
+		else
+			findNode(val, root.right);
+		
+		return null;
+	}
+
 	private void addToLeaf(int val, Node<Integer> head) {
 		
 		if(head.val == 0){
