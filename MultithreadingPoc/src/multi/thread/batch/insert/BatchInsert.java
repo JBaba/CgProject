@@ -107,9 +107,9 @@ public class BatchInsert {
 	public static void main(String[] args){
 		int num = 320;
 		BatchInsert bi = new BatchInsert();
-		bi.multipleRuns(num,50);
-		BatchInsert b2 = new BatchInsert();
-		b2.multipleRuns(num,50);
+		bi.multipleRuns(num,1050);
+		/*BatchInsert b2 = new BatchInsert();
+		b2.multipleRuns(num,50);*/
 	}
 }
 
