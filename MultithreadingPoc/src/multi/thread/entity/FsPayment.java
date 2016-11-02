@@ -143,6 +143,10 @@ public class FsPayment extends Entity implements IEntity{
 	public BigInteger getPaymentKey() {
 		return paymentKey;
 	}
+	
+	public synchronized String getPaymentKeyForInsert() {
+		return NSeq.nextFs()+"";
+	}
 
 	public void setPaymentKey(BigInteger paymentKey) {
 		this.paymentKey = paymentKey;
