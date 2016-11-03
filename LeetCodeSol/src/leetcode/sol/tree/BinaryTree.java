@@ -70,21 +70,28 @@ public class BinaryTree {
 	}
 	
 	private void deleteAndBalanceTree(Node deleteNode) {
-		if(deleteNode.right.val != 0)
+		if(deleteNode.right.val != 0){
 			deleteNode.val = deleteNode.right.val;
-			
+			deleteAndBalanceTree(deleteNode.right);
+		}
+		else{
+			deleteNode.val = 0;
+			deleteNode.right = null;
+			deleteNode.left = null;
+		}
 	}
 
 	private Node findNode(int val, Node root) {
-		if(root.val == val)
+		
+		if(root.val == 0)
+			return null;
+		else if(root.val == val)
 			return root;
 		
 		if(root.val >= val)
-			findNode(val, root.left);
+			return findNode(val, root.left);
 		else
-			findNode(val, root.right);
-		
-		return null;
+			return findNode(val, root.right);
 	}
 
 	private void addToLeaf(int val, Node<Integer> head) {
@@ -129,6 +136,10 @@ public class BinaryTree {
 		result.clear();
 		postOrder(root, result);
 		System.out.println(result);
+		
+		delete(2);
+		delete(3);
+		BTreePrinter.printNode(root);
 	}
 	
 	public static void main(String[] args) {
