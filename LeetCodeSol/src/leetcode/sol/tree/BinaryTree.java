@@ -99,9 +99,6 @@ public class BinaryTree {
 		
 	}
 	
-	private void deleteAndBalanceTree(Node deleteNode) {
-		if(deleteNode.right.val != 0){
-			deleteNode.val = deleteNode.right.val;
 	@SuppressWarnings("rawtypes")
 	private void deleteAndReplaceOnRight(Node deleteNode) {
 		Node replacement = findReplacemnet(deleteNode.left,"R");
@@ -125,13 +122,7 @@ public class BinaryTree {
 				replacement.right = null;
 				return;
 			}
-			deleteAndBalanceTree(deleteNode.right);
-		}
-		else{
-			deleteNode.val = 0;
-			deleteNode.right = null;
-			deleteNode.left = null;
-		}
+			
 			replacement.parent.left.val = 0;
 			replacement.left = null;
 			replacement.right = null;
@@ -194,10 +185,7 @@ public class BinaryTree {
 
 	@SuppressWarnings("rawtypes")
 	private Node findNode(int val, Node root) {
-		
-		if(root.val == 0)
-			return null;
-		else if(root.val == val)
+		if(root.val == val)
 			return root;
 		
 		if(root.val >= val)
@@ -271,7 +259,7 @@ public class BinaryTree {
 			System.out.println("Max Val:"+root.val);
 			return;
 		}
-		getMax(root.right);
+		getMin(root.right);
 	}
 
 	private void getHeight(Node root,Map<Integer,Integer> result){
@@ -299,17 +287,13 @@ public class BinaryTree {
 		result.clear();
 		postOrder(root, result);
 		System.out.println(result);
-<<<<<<< .mine		
+		
 		result.clear();
 		Queue<Node> q = new LinkedList<Node>();
 		q.add(root);
 		levelOrder(result,q);
 		System.out.println(result);
-=======		
-		delete(2);
-		delete(3);
-		BTreePrinter.printNode(root);
->>>>>>> .theirs	}
+	}
 	
 	public static void start(){
 		BinaryTree bt = new BinaryTree();
