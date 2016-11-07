@@ -99,9 +99,7 @@ public class BinaryTree {
 		
 	}
 	
-	private void deleteAndBalanceTree(Node deleteNode) {
-		if(deleteNode.right.val != 0){
-			deleteNode.val = deleteNode.right.val;
+<<<<<<< HEAD
 	@SuppressWarnings("rawtypes")
 	private void deleteAndReplaceOnRight(Node deleteNode) {
 		Node replacement = findReplacemnet(deleteNode.left,"R");
@@ -125,13 +123,7 @@ public class BinaryTree {
 				replacement.right = null;
 				return;
 			}
-			deleteAndBalanceTree(deleteNode.right);
-		}
-		else{
-			deleteNode.val = 0;
-			deleteNode.right = null;
-			deleteNode.left = null;
-		}
+			
 			replacement.parent.left.val = 0;
 			replacement.left = null;
 			replacement.right = null;
@@ -152,6 +144,18 @@ public class BinaryTree {
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	private void deleteNode(Node replacement, Node deleteNode) {
 		deleteNode.val = replacement.val;
+=======
+	private void deleteAndBalanceTree(Node deleteNode) {
+		if(deleteNode.right.val != 0){
+			deleteNode.val = deleteNode.right.val;
+			deleteAndBalanceTree(deleteNode.right);
+		}
+		else{
+			deleteNode.val = 0;
+			deleteNode.right = null;
+			deleteNode.left = null;
+		}
+>>>>>>> ee205cb1428352c4b9fabb074ec7f63f986dcc67
 	}
 
 	@SuppressWarnings("rawtypes")
@@ -299,17 +303,19 @@ public class BinaryTree {
 		result.clear();
 		postOrder(root, result);
 		System.out.println(result);
-<<<<<<< .mine		
+		
+<<<<<<< HEAD
 		result.clear();
 		Queue<Node> q = new LinkedList<Node>();
 		q.add(root);
 		levelOrder(result,q);
 		System.out.println(result);
-=======		
+=======
 		delete(2);
 		delete(3);
 		BTreePrinter.printNode(root);
->>>>>>> .theirs	}
+>>>>>>> ee205cb1428352c4b9fabb074ec7f63f986dcc67
+	}
 	
 	public static void start(){
 		BinaryTree bt = new BinaryTree();
