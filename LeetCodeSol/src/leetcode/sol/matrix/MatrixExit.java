@@ -14,7 +14,7 @@ public class MatrixExit {
 	int totalNode = rows * coulmns;
 	int exitRow = 1;
 	int exitColumn = 3;
-	int[][] maze = {{0,0,0,1},
+	int[][] maze = {{0,0,0,0},
 			        {0,0,1,0},
 			        {0,1,1,0},
 			        {0,0,0,0}};
@@ -117,8 +117,9 @@ public class MatrixExit {
         else {
             maze[i][j] = 2;                             // traversing path
             ++step;
-            if(mazeUtil(maze, i, j+1,step))  return true;    // right
+            
             if(mazeUtil(maze, i+1, j,step))  return true;    // down
+            if(mazeUtil(maze, i, j+1,step))  return true;    // right
             if(mazeUtil(maze, i-1, j,step))  return true;    // up
             if(mazeUtil(maze, i, j-1,step))  return true;    // left
             
