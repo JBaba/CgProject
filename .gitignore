@@ -1,7 +1,12 @@
 *.log
+
 .metadata/
+
 .classpath
+
 bin/
+
 RemoteSystemsTempFiles/
+
 
 .classpath
