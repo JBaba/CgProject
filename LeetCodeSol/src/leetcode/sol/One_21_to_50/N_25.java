@@ -66,6 +66,32 @@ public class N_25 {
 			return head;
     }
 	
+	public ListNode oddEvenList(ListNode head) {
+	    if(head == null) 
+	        return head;
+	 
+	    ListNode result = head;
+	    ListNode p1 = head;
+	    ListNode p2 = head.next;
+	    ListNode connectNode = head.next;
+	 
+	    while(p1 != null && p2 != null){
+	            ListNode t = p2.next;
+	            if(t == null)
+	                break;
+	 
+	            p1.next = p2.next;
+	            p1 = p1.next;
+	 
+	            p2.next = p1.next;
+	            p2 = p2.next;
+	    }
+	 
+	    p1.next = connectNode;
+	 
+	    return result;
+	}
+	
 	public static void main(String[] args) {
 		Two t = new Two();
 		ListNode l1 = t.init("112456");
@@ -81,6 +107,10 @@ public class N_25 {
 		System.out.println(n.reverseKGroup(l1, 3));
 		System.out.println(n.reverseKGroup(l1, 1));
 		System.out.println(n.reverseKGroup(l1, 7));
+		
+		ListNode l3 = t.init("123456789");
+		l3 = n.oddEvenList(l3);
+		System.out.println(l3);
 	}
 
 }
