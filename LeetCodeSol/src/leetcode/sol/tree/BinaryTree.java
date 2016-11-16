@@ -1,16 +1,22 @@
 package leetcode.sol.tree;
 
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
+import java.util.Queue;
 
 public class BinaryTree {
 
+	@SuppressWarnings("rawtypes")
 	Node root = null;  
 	int size = 0;
 	
 	public BinaryTree() {
 	}
 	
+	@SuppressWarnings("unchecked")
 	public void add(int val){
 		if(root == null){
 			root = new Node<>(val);
@@ -20,9 +26,10 @@ public class BinaryTree {
 			return;
 		}
 		Node<Integer> dummayHead = root;
-		addToLeaf(val,dummayHead);
+		addToLeaf(val,dummayHead,dummayHead);
 	}
 	
+	@SuppressWarnings("rawtypes")
 	public void preOrder(Node root,List<Integer> result){
 		if(root.val != 0){
 			result.add(root.val);
@@ -34,6 +41,7 @@ public class BinaryTree {
 			
 	}
 	
+	@SuppressWarnings("rawtypes")
 	public void inOrder(Node root,List<Integer> result){
 		if(root.val == 0){
 			return;
@@ -45,6 +53,7 @@ public class BinaryTree {
 		inOrder(root.right, result);
 	}
 	
+	@SuppressWarnings("rawtypes")
 	public void postOrder(Node root,List<Integer> result){
 		if(root.val == 0){
 			return;
@@ -56,6 +65,22 @@ public class BinaryTree {
 		}
 	}
 	
+	public void levelOrder(List<Integer> result,Queue<Node> q){
+		if(q.isEmpty())
+			return;
+		
+		Node current = q.poll();
+		result.add(current.val);
+		
+		if(current.left.val != 0)
+			q.add(current.left);
+		if(current.right.val != 0)
+			q.add(current.right);
+		
+		levelOrder(result, q);
+	}
+	
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public void delete(int val){
 		
 		if(root == null)
@@ -66,26 +91,101 @@ public class BinaryTree {
 		if(deleteNode == null)
 			return;
 		
-		deleteAndBalanceTree(deleteNode);
+		if(deleteNode.right.val != 0){
+			deleteAndReplaceOnLeft(deleteNode);
+		}else if(deleteNode.left.val != 0){
+			deleteAndReplaceOnRight(deleteNode);
+		}
+		
 	}
 	
-	private void deleteAndBalanceTree(Node deleteNode) {
-		if(deleteNode.right.val != 0){
-			deleteNode.val = deleteNode.right.val;
-			deleteAndBalanceTree(deleteNode.right);
-		}
-		else{
-			deleteNode.val = 0;
-			deleteNode.right = null;
-			deleteNode.left = null;
+	@SuppressWarnings("rawtypes")
+	private void deleteAndReplaceOnRight(Node deleteNode) {
+		Node replacement = findReplacemnet(deleteNode.left,"R");
+		deleteNode(replacement,deleteNode);
+		deleteReplacementNode(replacement,"R");
+	}
+
+	@SuppressWarnings("rawtypes")
+	private void deleteAndReplaceOnLeft(Node deleteNode) {
+		Node replacement = findReplacemnet(deleteNode.right,"L");
+		deleteNode(replacement,deleteNode);
+		deleteReplacementNode(replacement,"L");
+	}
+
+	@SuppressWarnings({ "rawtypes", "unchecked" })
+	private void deleteReplacementNode(Node replacement, String string) {
+		if(string.equalsIgnoreCase("L")){
+			if(replacement.parent.left.val == 0){
+				replacement.parent.right.val = 0;
+				replacement.left = null;
+				replacement.right = null;
+				return;
+			}
+			
+			replacement.parent.left.val = 0;
+			replacement.left = null;
+			replacement.right = null;
+		}else{
+			if(replacement.parent.right.val == 0){
+				replacement.parent.left.val = 0;
+				replacement.left = null;
+				replacement.right = null;
+				return;
+			}
+			
+			replacement.parent.right.val = 0;
+			replacement.left = null;
+			replacement.right = null;
 		}
 	}
 
-	private Node findNode(int val, Node root) {
+	@SuppressWarnings({ "rawtypes", "unchecked" })
+	private void deleteNode(Node replacement, Node deleteNode) {
+		deleteNode.val = replacement.val;
+	}
+
+	@SuppressWarnings("rawtypes")
+	private Node findReplacemnet(Node deleteNode,String dir) {
+		if(deleteNode.val != 0 && 
+				deleteNode.right.val == 0 && deleteNode.left.val == 0)
+			return deleteNode;
 		
-		if(root.val == 0)
-			return null;
-		else if(root.val == val)
+		if(dir.equalsIgnoreCase("R"))
+			return findReplacementInRight(deleteNode,dir);
+		else
+			return findReplacementInLeft(deleteNode,dir);
+	}
+
+	@SuppressWarnings("rawtypes")
+	private Node findReplacementInRight(Node deleteNode, String dir) {
+		if(deleteNode.right.val != 0){
+			return findReplacemnet(deleteNode.right,dir);
+		}
+		else{
+			return findReplacemnet(deleteNode.left,dir);
+		}
+	}
+
+	@SuppressWarnings("rawtypes")
+	private Node findReplacementInLeft(Node deleteNode, String dir) {
+		if(deleteNode.left.val != 0){
+			return findReplacemnet(deleteNode.left,dir);
+		}
+		else{
+			return findReplacemnet(deleteNode.right,dir);
+		}
+	}
+
+	@SuppressWarnings({ "unchecked", "unused", "rawtypes" })
+	private void deleteNodeAtLeaf(Node replacement) {
+		if(replacement.right.val != 0)
+			replacement.val = replacement.right.val;
+	}
+
+	@SuppressWarnings("rawtypes")
+	private Node findNode(int val, Node root) {
+		if(root.val == val)
 			return root;
 		
 		if(root.val >= val)
@@ -94,26 +194,34 @@ public class BinaryTree {
 			return findNode(val, root.right);
 	}
 
-	private void addToLeaf(int val, Node<Integer> head) {
+	@SuppressWarnings("unchecked")
+	private void addToLeaf(int val, Node<Integer> head, Node<Integer> parent) {
 		
 		if(head.val == 0){
 			head.val = val;
 			head.left = new Node<>(0);
 			head.right = new Node<>(0);
+			head.parent = parent;
 			++size;
 			return;
 		}
 		
 		if(val >= head.val){
-			addToLeaf(val, head.right);
+			addToLeaf(val, head.right, head);
 		}
 		else{
-			addToLeaf(val, head.left);
+			addToLeaf(val, head.left, head);
 		}
 	}
 	
+	@SuppressWarnings("unchecked")
 	void print(){
-		//BTreePrinter.printNode(root);
+		
+		BTreePrinter.printNode(root);
+		
+		delete(37);
+		
+		BTreePrinter.printNode(root);
 		
 		root = null;
 		
@@ -124,7 +232,50 @@ public class BinaryTree {
 		add(3);
 		
 		BTreePrinter.printNode(root);
+		traversal();
 		
+		Map<Integer,Integer> map = new LinkedHashMap<>();
+		getHeight(root,map);
+		
+		getMin(root);
+		getMax(root);
+		
+		delete(2);
+
+		//BTreePrinter.printNode(root);
+		
+	}
+	
+	private void getMin(Node root) {
+		if(root.left.val == 0){
+			System.out.println("Min Val:"+root.val);
+			return;
+		}
+		getMin(root.left);
+	}
+	
+	private void getMax(Node root) {
+		if(root.right.val == 0){
+			System.out.println("Max Val:"+root.val);
+			return;
+		}
+		getMin(root.right);
+	}
+
+	private void getHeight(Node root,Map<Integer,Integer> result){
+		if(root.val != 0){
+			if(root.parent != null)
+				result.put(root.val,result.get(root.parent.val)+1);
+			else
+				result.put(root.val,1);
+		}else{
+			return;
+		}
+		getHeight(root.left, result);
+		getHeight(root.right, result);
+	}
+
+	public void traversal(){
 		List<Integer> result = new ArrayList<Integer>();
 		preOrder(root, result);
 		System.out.println(result);
@@ -137,12 +288,14 @@ public class BinaryTree {
 		postOrder(root, result);
 		System.out.println(result);
 		
-		delete(2);
-		delete(3);
-		BTreePrinter.printNode(root);
+		result.clear();
+		Queue<Node> q = new LinkedList<Node>();
+		q.add(root);
+		levelOrder(result,q);
+		System.out.println(result);
 	}
 	
-	public static void main(String[] args) {
+	public static void start(){
 		BinaryTree bt = new BinaryTree();
 		bt.add(50);
 		bt.add(40);
@@ -189,7 +342,10 @@ public class BinaryTree {
 		bt.add(79);
 
 		bt.print();
-
+	}
+	
+	public static void main(String[] args) {
+		start();
 	}
 
 }
