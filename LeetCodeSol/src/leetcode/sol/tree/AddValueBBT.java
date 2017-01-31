@@ -2,6 +2,8 @@ package leetcode.sol.tree;
 
 import java.util.*;
 
+import com.amazon.Node;
+
 public class AddValueBBT {
 	
 	Node root = new Node(0);
@@ -57,37 +59,6 @@ public class AddValueBBT {
 		AddValueBBT av = new AddValueBBT();
 	}
 
-}
-
-class Node<Integer> {
-	public Node right,left,parent;
-	int val;
-	
-	public Node(int val) {
-		this.right=null;
-		this.left=null;
-		this.parent=null;
-		this.val=val;
-	}
-	
-	public Node(Node parent,int val) {
-		this.right=null;
-		this.left=null;
-		this.parent=parent;
-		this.val=val;
-	}
-	
-	public Node(Node right,Node left,Node parent,int val) {
-		this.right=right;
-		this.left=left;
-		this.parent=parent;
-		this.val=val;
-	}
-	
-	@Override
-	public String toString() {
-		return val+"->L["+left.val+"],R["+right.val+"]";
-	}
 }
 
 class BTreePrinter {

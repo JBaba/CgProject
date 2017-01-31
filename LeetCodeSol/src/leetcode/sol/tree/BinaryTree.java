@@ -7,10 +7,12 @@ import java.util.List;
 import java.util.Map;
 import java.util.Queue;
 
+import com.amazon.Node;
+
 public class BinaryTree {
 
 	@SuppressWarnings("rawtypes")
-	Node root = null;  
+	public Node<Integer> root = null;  
 	int size = 0;
 	
 	public BinaryTree() {
