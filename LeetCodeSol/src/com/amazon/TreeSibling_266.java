@@ -59,9 +59,34 @@ public class TreeSibling_266 {
 		
 		// find the siblings for given node
 		System.out.print("Nodes: ");
+		// with parent node impl
 		printSiblings(siblingsParent,siblingsParentHeight,1,root);
+		// without parent node impl
+		printSiblingsV2(siblingsParentHeight,1,root,i);
 		System.out.println();
 		System.out.println("----------------------------------");
+	}
+
+	private void printSiblingsV2(int siblingsParentHeight, int height,Node<Integer> root,int key) {
+		if(root != null){
+			
+			// its parent of given node
+			if(root.right.val == key || root.left.val == key)
+				return;
+			
+			// found the siblings
+			if(siblingsParentHeight == height){
+				System.out.print(root.left.val + " " + root.right.val);
+				return;
+			}
+			
+			// check in the tree
+			printSiblingsV2(siblingsParentHeight, height+1, root.left,key);
+			printSiblingsV2(siblingsParentHeight, height+1, root.right,key);
+			
+		}else{
+			return;
+		}
 	}
 
 	private void printSiblings(Node<Integer> siblingsParent,int siblingsParentHeight,int height,Node<Integer> root) {
