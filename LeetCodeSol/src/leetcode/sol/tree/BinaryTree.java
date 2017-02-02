@@ -22,8 +22,8 @@ public class BinaryTree {
 	public void add(int val){
 		if(root == null){
 			root = new Node<>(val);
-			root.left = new Node<>(0);
-			root.right = new Node<>(0);
+			root.left = new Node<>(null);
+			root.right = new Node<>(null);
 			++size;
 			return;
 		}
@@ -32,7 +32,7 @@ public class BinaryTree {
 	}
 	
 	@SuppressWarnings("rawtypes")
-	public void preOrder(Node root,List<Integer> result){
+	public void preOrder(Node<Integer> root,List<Integer> result){
 		if(root.val != 0){
 			result.add(root.val);
 		}else{
@@ -44,7 +44,7 @@ public class BinaryTree {
 	}
 	
 	@SuppressWarnings("rawtypes")
-	public void inOrder(Node root,List<Integer> result){
+	public void inOrder(Node<Integer> root,List<Integer> result){
 		if(root.val == 0){
 			return;
 		}
@@ -56,7 +56,7 @@ public class BinaryTree {
 	}
 	
 	@SuppressWarnings("rawtypes")
-	public void postOrder(Node root,List<Integer> result){
+	public void postOrder(Node<Integer> root,List<Integer> result){
 		if(root.val == 0){
 			return;
 		}
@@ -67,11 +67,11 @@ public class BinaryTree {
 		}
 	}
 	
-	public void levelOrder(List<Integer> result,Queue<Node> q){
+	public void levelOrder(List<Integer> result,Queue<Node<Integer>> q){
 		if(q.isEmpty())
 			return;
 		
-		Node current = q.poll();
+		Node<Integer> current = q.poll();
 		result.add(current.val);
 		
 		if(current.left.val != 0)
@@ -88,7 +88,7 @@ public class BinaryTree {
 		if(root == null)
 			return;
 		
-		Node deleteNode = findNode(val,root);
+		Node<Integer> deleteNode = findNode(val,root);
 		
 		if(deleteNode == null)
 			return;
@@ -116,7 +116,7 @@ public class BinaryTree {
 	}
 
 	@SuppressWarnings({ "rawtypes", "unchecked" })
-	private void deleteReplacementNode(Node replacement, String string) {
+	private void deleteReplacementNode(Node<Integer> replacement, String string) {
 		if(string.equalsIgnoreCase("L")){
 			if(replacement.parent.left.val == 0){
 				replacement.parent.right.val = 0;
@@ -148,7 +148,7 @@ public class BinaryTree {
 	}
 
 	@SuppressWarnings("rawtypes")
-	private Node findReplacemnet(Node deleteNode,String dir) {
+	private Node findReplacemnet(Node<Integer> deleteNode,String dir) {
 		if(deleteNode.val != 0 && 
 				deleteNode.right.val == 0 && deleteNode.left.val == 0)
 			return deleteNode;
@@ -160,7 +160,7 @@ public class BinaryTree {
 	}
 
 	@SuppressWarnings("rawtypes")
-	private Node findReplacementInRight(Node deleteNode, String dir) {
+	private Node findReplacementInRight(Node<Integer> deleteNode, String dir) {
 		if(deleteNode.right.val != 0){
 			return findReplacemnet(deleteNode.right,dir);
 		}
@@ -170,7 +170,7 @@ public class BinaryTree {
 	}
 
 	@SuppressWarnings("rawtypes")
-	private Node findReplacementInLeft(Node deleteNode, String dir) {
+	private Node findReplacementInLeft(Node<Integer> deleteNode, String dir) {
 		if(deleteNode.left.val != 0){
 			return findReplacemnet(deleteNode.left,dir);
 		}
@@ -180,13 +180,13 @@ public class BinaryTree {
 	}
 
 	@SuppressWarnings({ "unchecked", "unused", "rawtypes" })
-	private void deleteNodeAtLeaf(Node replacement) {
+	private void deleteNodeAtLeaf(Node<Integer> replacement) {
 		if(replacement.right.val != 0)
 			replacement.val = replacement.right.val;
 	}
 
 	@SuppressWarnings("rawtypes")
-	private Node findNode(int val, Node root) {
+	private Node findNode(int val, Node<Integer> root) {
 		if(root.val == val)
 			return root;
 		
@@ -199,10 +199,10 @@ public class BinaryTree {
 	@SuppressWarnings("unchecked")
 	private void addToLeaf(int val, Node<Integer> head, Node<Integer> parent) {
 		
-		if(head.val == 0){
+		if(head.val == null){
 			head.val = val;
-			head.left = new Node<>(0);
-			head.right = new Node<>(0);
+			head.left = new Node<>(null);
+			head.right = new Node<>(null);
 			head.parent = parent;
 			++size;
 			return;
@@ -248,7 +248,7 @@ public class BinaryTree {
 		
 	}
 	
-	private void getMin(Node root) {
+	private void getMin(Node<Integer> root) {
 		if(root.left.val == 0){
 			System.out.println("Min Val:"+root.val);
 			return;
@@ -256,7 +256,7 @@ public class BinaryTree {
 		getMin(root.left);
 	}
 	
-	private void getMax(Node root) {
+	private void getMax(Node<Integer> root) {
 		if(root.right.val == 0){
 			System.out.println("Max Val:"+root.val);
 			return;
@@ -264,7 +264,7 @@ public class BinaryTree {
 		getMin(root.right);
 	}
 
-	private void getHeight(Node root,Map<Integer,Integer> result){
+	private void getHeight(Node<Integer> root,Map<Integer,Integer> result){
 		if(root.val != 0){
 			if(root.parent != null)
 				result.put(root.val,result.get(root.parent.val)+1);
@@ -291,7 +291,7 @@ public class BinaryTree {
 		System.out.println(result);
 		
 		result.clear();
-		Queue<Node> q = new LinkedList<Node>();
+		Queue<Node<Integer>> q = new LinkedList<Node<Integer>>();
 		q.add(root);
 		levelOrder(result,q);
 		System.out.println(result);
