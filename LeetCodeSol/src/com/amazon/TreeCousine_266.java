@@ -10,7 +10,7 @@ import leetcode.sol.tree.BinaryTree;
  *
  */
 
-public class TreeSibling_266 {
+public class TreeCousine_266 {
 	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
@@ -24,7 +24,7 @@ public class TreeSibling_266 {
 		bt.add(17);
 		BTreePrinter.printBinaryTree(bt.root,0);
 		
-		TreeSibling_266 ts = new TreeSibling_266();
+		TreeCousine_266 ts = new TreeCousine_266();
 		ts.findSiblings(bt.root,6);
 		ts.findSiblings(bt.root,10);
 		ts.findSiblings(bt.root,17);

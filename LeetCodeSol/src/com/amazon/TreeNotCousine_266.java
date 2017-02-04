@@ -5,7 +5,7 @@ import java.util.List;
 
 import leetcode.sol.tree.BinaryTree;
 
-public class TreeNotSibling_266 {
+public class TreeNotCousine_266 {
 
 	List<Integer> nodes = new ArrayList<>();
 	
@@ -28,7 +28,7 @@ public class TreeNotSibling_266 {
 		bt.add(70);
 		BTreePrinter.printBinaryTree(bt.root,0);
 		
-		TreeNotSibling_266 ts = new TreeNotSibling_266();
+		TreeNotCousine_266 ts = new TreeNotCousine_266();
 		ts.findNodeWhoDoesntSiblings(bt.root,6);
 		ts.findNodeWhoDoesntSiblings(bt.root,10);
 		ts.findNodeWhoDoesntSiblings(bt.root,17);
