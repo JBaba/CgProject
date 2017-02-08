@@ -102,6 +102,7 @@ public class LRU_266 {
 	}
 
 	private void removeLRU() {
+		cacheMap.remove(end.key);
 		end = end.prev;
 		end.next = null;
 	}
