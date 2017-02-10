@@ -39,7 +39,7 @@ public class AddValueBBT {
 		balanceTree(leaf.parent); // balance the tree
 	}
 	
-	void balanceTree(Node parent){
+	void balanceTree(Node<Integer> parent){
 		if(parent == null)
 			return;
 		
@@ -51,7 +51,7 @@ public class AddValueBBT {
 		balanceTree(parent.parent);
 	}
 	
-	private boolean isOrOpsLeafMatchTo(Node leaf) {
+	private boolean isOrOpsLeafMatchTo(Node<Integer> leaf) {
 		return ((leaf.right.val & leaf.left.val) == leaf.val)?true:false;
 	}
 
