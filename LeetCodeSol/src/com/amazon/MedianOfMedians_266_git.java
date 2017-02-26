@@ -6,6 +6,7 @@ public class MedianOfMedians_266_git {
 	 public static void findMedian(int arr[])
 	    {
 	        int median = findMedianUtil(arr,(arr.length)/2 + 1,0,arr.length-1);
+	        printArray(arr,0,arr.length);
 	        System.out.println("Median = " + median);
 	    }
 	    
@@ -123,7 +124,7 @@ public class MedianOfMedians_266_git {
 	    
 	    public static void main(String args[])
 	    {
-	        int nElements = 10;
+	        int nElements = 21;
 	        int arr[] = new int[nElements];
 	        
 	        for(int i=0;i<nElements;i++)
