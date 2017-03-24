@@ -22,7 +22,7 @@ public class IsAnagram {
 		ia.isAnagramUsingHashMap(word,anagram);
 	}
 
-	private boolean isAnagramUsingHashMap(String word, String anagram) {
+	public boolean isAnagramUsingHashMap(String word, String anagram) {
 		if(word.length() != anagram.length()){
 			System.out.println("Not anagram");
 			return false;
