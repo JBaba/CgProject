@@ -22,7 +22,7 @@ public class CanReachEnd {
 		return reachSoFar>=lastIndex;
 	}
 
-	private static List<Integer> getList(String string, List<Integer> list) {
+	static List<Integer> getList(String string, List<Integer> list) {
 		String[] split = string.split(",");
 		for(String s:split){
 			int num = Integer.parseInt(s);
