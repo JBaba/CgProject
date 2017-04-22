@@ -11,8 +11,36 @@ public class MaxProfit {
 
 		System.out.println(list);
 		int profit = maxProfit(list);
+
+		BuySellStock sellStock = getMaxProfit(list);
+		System.out.println(sellStock);
+		
 		System.out.println(profit);
 
+	}
+
+	private static BuySellStock getMaxProfit(List<Integer> list) {
+
+		BuySellStock bs = new BuySellStock();
+		bs.whenToBuy = 0;
+		bs.whenToSell = 0;
+		
+		int index = 1;
+		int maxProfit = 0;
+		int minPriceIndex = 0;
+		
+		while(index < list.size()){
+			int tempProfit = list.get(index)-list.get(minPriceIndex);
+			if(tempProfit > maxProfit){
+				bs.whenToBuy = minPriceIndex;
+				bs.whenToSell = index;
+				maxProfit = tempProfit;
+			}
+			minPriceIndex = ((list.get(index)<list.get(minPriceIndex))?index:minPriceIndex);
+			index++;
+		}
+		
+		return bs;
 	}
 
 	private static int maxProfit(List<Integer> list) {
@@ -27,4 +55,16 @@ public class MaxProfit {
 		return maxProfit;
 	}
 
+}
+
+class BuySellStock {
+	
+	public int whenToBuy;
+	public int whenToSell;
+	
+	@Override
+	public String toString() {
+		// TODO Auto-generated method stub
+		return "i:"+whenToBuy+" j:"+whenToSell;
+	}
 }
