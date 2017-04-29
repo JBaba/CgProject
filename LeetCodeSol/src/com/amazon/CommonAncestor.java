@@ -19,10 +19,10 @@ public class CommonAncestor {
 		
 		BTreePrinter.printBinaryTree(bt.root,0);
 		
-		Status st = findAncestor(bt.root,63,50);
+		Status st = findAncestor(bt.root,63,150);
 		System.out.println(st);
 
-}
+	}
 
 	private static Status findAncestor(Node<Integer> root,int n1,int n2) {
 		if(root==null || root.val == null)
