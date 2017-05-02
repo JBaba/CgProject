@@ -23,6 +23,7 @@ public class MergeArrayUsingPqueue {
 
 		List<Integer> list = mergeSortedArrays(cary);
 		System.out.println(list);
+		System.out.println(list.subList(0, 2));
 	}
 
 	private static List<Integer> mergeSortedArrays(CAry[] cary) {
