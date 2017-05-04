@@ -52,7 +52,7 @@ public class PrintTreeUsingRecursion {
 		System.out.println(list.toString());
 	}
 
-	private static void printPreOrder(Node<Integer> root) {
+	public static void printPreOrder(Node<Integer> root) {
 		Deque<Node<Integer>> queue = new ArrayDeque<Node<Integer>>();
 		Node<Integer> tree = root;
 		

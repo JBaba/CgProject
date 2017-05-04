@@ -26,6 +26,12 @@ public class Node<T> {
 		this.val=val;
 	}
 	
+	public Node(T i, Node<T> left, Node<T> right) {
+		this.val = i;
+		this.left = left;
+		this.right = right;
+	}
+
 	@Override
 	public String toString() {
 		return val+"->L["+left.val+"],R["+right.val+"]";

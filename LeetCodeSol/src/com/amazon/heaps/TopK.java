@@ -1,6 +1,7 @@
 package com.amazon.heaps;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
@@ -17,6 +18,8 @@ public class TopK {
 			list.add(a);
 			a+="a";
 		}
+		
+		Collections.reverseOrder();
 		
 		List<String> out = k.topK(4,list.iterator());
 	}
