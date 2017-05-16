@@ -38,7 +38,7 @@ public class TopK {
 				minHeap.poll();
 			}
 		}
-		
+				
 		return new ArrayList<>(minHeap);
 	}
 
