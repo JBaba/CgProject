@@ -26,8 +26,6 @@ public class LongestSubArraySum {
 			
 		}
 		
-		maxSum = Math.max(maxSum, max_ends);
-		
 		return maxSum;
 	}
 
