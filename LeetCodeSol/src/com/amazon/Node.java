@@ -34,7 +34,16 @@ public class Node<T> {
 
 	@Override
 	public String toString() {
-		return val+"->L["+left.val+"],R["+right.val+"]";
+		
+		String s = "";
+		
+		if(left!=null && right != null)
+			s = "->L["+left+"],R["+right+"]";
+		else if(left!=null)
+			s = "->L["+left+"]";
+		else if(right!=null)	
+			s = "->R["+right+"]";
+		return val+s;
 	}
 }
 
