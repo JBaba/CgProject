@@ -1,5 +1,7 @@
 package com.facebook.set1;
 
+import java.util.Arrays;
+
 public class CountStepsClimb {
 
 	public static void main(String[] args) {
@@ -8,6 +10,33 @@ public class CountStepsClimb {
 		
 		System.out.println(ans);
 		
+		perm("abcd");
+		
+	}
+
+	private static void perm(String string) {
+
+		perm(string.toCharArray(),string.length()-1);
+		
+	}
+
+	private static void perm(char[] ary, int n) {
+
+		if(n==0)
+			System.out.println(new String(ary));
+		
+		for(int i=0;i<=n;i++){
+			swap(ary,i,n);
+			perm(ary,n-1);
+			swap(ary,i,n);
+		}
+		
+	}
+	
+	private static void swap(char[] ary, int left, int right) {
+		char temp = ary[left];
+		ary[left] = ary[right];
+		ary[right] = temp;
 	}
 
 	private static int countNumberOfWaysToClimbSteps(int no,int start) {
