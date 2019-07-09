@@ -42,11 +42,12 @@ public class Skyline {
                 return Integer.compare(o2.height,o1.height);
             }
             // duplicate false then order maximum height first
-            // because it should at the end
+            // because it should at the end becuase can have long tail
+            // 14,16 - 14,18 -> so if next starts at 14 then it should [14,18]
             if (!o1.isStart && !o2.isStart) {
                 return Integer.compare(o1.height, o2.height);
             }
-
+            // keep start up front
             return o1.isStart ? -1 : 1;
         });
 
@@ -61,10 +62,11 @@ public class Skyline {
                 }
                 heap.add(edge.height);
             } else {
+                // remove height so inserted edges cleared
                 heap.remove(edge.height);
-                if (heap.isEmpty()) {
+                if (heap.isEmpty()) { // gap
                     results.add(new int[]{edge.x, 0});
-                } else if (edge.height > heap.peek()) {
+                } else if (edge.height > heap.peek()) { // add edge end node
                     results.add(new int[]{edge.x, heap.peek()});
                 }
             }
