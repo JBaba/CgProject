@@ -4,7 +4,14 @@ public class ShortestPalindrome {
     
     shortestPalindrome("bubble")
     // "elbbubble"
-    
+    bubble
+    [bub]ble
+    [this section is palindrome]
+    ble[bub]ble
+    add "ble" end at front
+    elb[bub]ble
+    reverse "ble" the section
+    "elbbubble" we get to the answer
     shortestPalindrome(poppa)
     // appoppa
     
