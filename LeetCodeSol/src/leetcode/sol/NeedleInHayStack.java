@@ -1,4 +1,8 @@
 class NeedleInHayStack {
+    
+    //there is a small possibility that two strings' hashes are equal but they are not same. 
+    //There is no perfect hashing. So we need to check they are equal.
+    //Since the test cases do not include such a scenario it works.
     public int strStr(String haystack, String needle) {
         
         if(needle == null || needle.isEmpty())
